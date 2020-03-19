@@ -6,9 +6,10 @@ import {
   TextInput,
   Button,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   KeyboardAvoidingView
 } from "react-native";
+import moment from "moment";
 import t from "tcomb-form-native";
 
 const Form = t.form.Form;
@@ -110,10 +111,29 @@ const RequisitionOptions = {
 };
 
 export default class RequisitionForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { Quantity: "", UnitPrice: "", SubTotal: "" };
   }
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  clearForm = () => {
+    // clear content from all textbox
+    this.setState({ value: null });
+  };
+
+  handleSubmit = event => {
+    const value = this.formRef.getValue();
+    if (value) {
+      console.log(value);
+      // clear all fields after submit
+      this.clearForm();
+      alert("Requisition captured!");
+    }
+  };
+
   onChangeText = text => {
     Quantity = this.refs.form.getComponent("Quantity").refs.input.focus();
     UnitPrice = this.refs.form.getComponent("UnitPrice").refs.input.focus();
@@ -124,48 +144,39 @@ export default class RequisitionForm extends Component {
     SubTotal = this.setState({ SubTotal: parseFloat(subResult) });
   };
 
-  handleSubmit = () => {
-    const value = this.formRef.getValue();
-    console.log("value: ", value);
-  };
-
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView
-          behavior="padding"
-          enabled
-          onPress={() => {
-            Keyboard.dismiss();
-          }}
-        >
-          <ScrollView>
-            <TextInput
-              ref="form"
-              type={Requisition}
-              options={RequisitionOptions}
-            />
-            <View>
-              <Text style={styles.title}>Requisition Form</Text>
-            </View>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enabled
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <ScrollView>
+          <View>
+            <Text style={styles.title}>Requisition Form</Text>
             <Form
               ref={request => (this.formRef = request)}
               type={Requisition}
+              value={this.state.value}
+              onChange={this.onChange.bind(this)}
               options={RequisitionOptions}
               onChangeText={this.onChangeText}
             />
-            <TouchableHighlight>
-              <View style={styles.buttonView}>
+            <TouchableOpacity>
+              <View style={styles.button}>
                 <Button
                   color="#0A802B"
                   title="SUBMIT REQUEST"
                   onPress={this.handleSubmit}
                 />
               </View>
-            </TouchableHighlight>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -184,7 +195,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 25
   },
-  buttonView: {
+  button: {
     marginTop: 20,
     marginBottom: 50
   }

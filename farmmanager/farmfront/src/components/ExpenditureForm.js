@@ -35,7 +35,7 @@ const PaymentMode = t.enums({
   Credit: "Credit"
 });
 
-const User = t.struct({
+const Expenditure = t.struct({
   Date: t.Date,
   Supplier: t.String,
   Phone: t.Number,
@@ -129,7 +129,7 @@ const options = {
       label: "Balance Due"
     },
     BalanceDueDate: {
-      label: "Date",
+      label: "Due Date",
       mode: "date",
       error: "Please enter a correct date",
       config: {
@@ -142,16 +142,30 @@ const options = {
 };
 
 export default class ExpenditureForm extends Component {
-  handleSubmit = () => {
-    const value = this.refs.form.getValue();
-    console.log("value: ", value);
-    console.log(value.Quantity);
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+  onChange = value => {
+    this.setState({ value });
   };
 
-  //   componentDidMount() {
-  //     // give focus to the name textbox
-  //     this.refs.form.getComponent('Subtotal').refs.input.focus();
-  //   };
+  clearForm = () => {
+    // clear content from all textbox
+    this.setState({ value: null });
+  };
+
+  handleSubmit = event => {
+    const value = this._form.getValue();
+    if (value) {
+      console.log(value);
+      // clear all fields after submit
+      this.clearForm();
+      alert("Expenditure captured!");
+      console.log(value.Quantity);
+    }
+  };
 
   render() {
     return (
@@ -159,8 +173,14 @@ export default class ExpenditureForm extends Component {
         <ScrollView>
           <View>
             <Text style={styles.title}>Expenditure</Text>
-            <Form ref="form" type={User} options={options} />
-            <View style={styles.butt}>
+            <Form
+              ref={c => (this._form = c)}
+              type={Expenditure}
+              value={this.state.value}
+              onChange={this.onChange.bind(this)}
+              options={options}
+            />
+            <View style={styles.button}>
               <Button
                 color="#0A802B"
                 title="SAVE"
@@ -201,7 +221,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold"
   },
-  butt: {
+  button: {
     marginTop: 20,
     marginBottom: 50
   }

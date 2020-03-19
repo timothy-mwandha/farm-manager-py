@@ -1,4 +1,4 @@
-import React, { Component, PropTypes, } from "react";
+import React, { Component, PropTypes } from "react";
 import {
   ScrollView,
   View,
@@ -47,6 +47,7 @@ const User = t.struct({
   AmountPaid: t.Number,
   PaymentMode: PaymentMode,
   ReceiptNumber: t.Number,
+  BalanceDue: t.Number,
   BalanceDueDate: t.Date
 });
 
@@ -85,6 +86,7 @@ const options = {
       }
     },
     Name: {
+      autoFocus: true,
       error: "Please enter a correct Name"
     },
     Email: {
@@ -116,8 +118,11 @@ const options = {
     ReceiptNumber: {
       label: "Reciept Number"
     },
+    BalanceDue: {
+      label: "Balance Due"
+    },
     BalanceDueDate: {
-      label: "Date",
+      label: "Due Date",
       mode: "date",
       error: "Please enter a correct date",
       config: {
@@ -129,15 +134,29 @@ const options = {
   stylesheet: formStyles
 };
 
-export default class ExpenditureForm extends Component {
-  componentDidMount() {
-    // give focus to the name textbox
-    this.refs.form.getComponent("Client").refs.input.focus();
+export default class IncomeForm extends Component {
+  constructor() {
+    super();
+    this.state = {};
   }
-  handleSubmit = () => {
-    const value = this.refs.form.getValue();
-    console.log("value: ", value);
-    console.log(value.Quantity);
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  clearForm = () => {
+    // clear content from all textbox
+    this.setState({ value: null });
+  };
+
+  handleSubmit = event => {
+    const value = this._form.getValue();
+    if (value) {
+      console.log(value);
+      // clear all fields after submit
+      this.clearForm();
+      alert("Income captured!");
+      console.log(value.Quantity);
+    }
   };
 
   handlenum1Change = evt => {
@@ -162,10 +181,15 @@ export default class ExpenditureForm extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <ScrollView>
-        
           <View>
             <Text style={styles.title}>Income</Text>
-            <Form ref="form" type={User} options={options} />
+            <Form
+              ref={c => (this._form = c)}
+              type={User}
+              value={this.state.value}
+              onChange={this.onChange.bind(this)}
+              options={options}
+            />
             <View style={styles.butt}>
               <Button
                 color="#0A802B"

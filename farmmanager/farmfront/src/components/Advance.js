@@ -7,8 +7,9 @@ import {
   Button,
   Linking,
   KeyboardAvoidingView,
-  TouchableHighlight
+  TouchableOpacity
 } from "react-native";
+import moment from "moment";
 
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
@@ -29,7 +30,7 @@ var Status = t.enums({
 });
 
 const AdvanceForm = t.struct({
-  ...Form.User,
+  ...Form.AdvanceForm,
   Date: t.Date,
   Name: Name,
   Gender: Gender,
@@ -41,11 +42,9 @@ const AdvanceForm = t.struct({
 
 const formStyles = {
   ...Form.stylesheet,
-  //   formGroup: {
-  //     normal: {
-  //       marginBottom: 5
-  //     }
-  //   },
+  formGroup: {
+    normal: {}
+  },
   controlLabel: {
     normal: {
       color: "#650205",
@@ -105,10 +104,7 @@ const options = {
     },
     Description: {
       label: "Description",
-      error: "Put a description",
-      config: {
-        multiline: true
-      }
+      error: "Put a description"
     }
   },
   stylesheet: formStyles
@@ -117,11 +113,27 @@ const options = {
 export default class Advance extends Component {
   constructor() {
     super();
+
     this.state = {};
   }
+
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  clearForm = () => {
+    // clear content from all textbox
+    this.setState({ value: null });
+  };
+
   handleSubmit = event => {
     const value = this._form.getValue();
-    console.log("value: ", value);
+    if (value) {
+      console.log(value);
+      // clear all fields after submit
+      this.clearForm();
+      alert("Advance captured!");
+    }
   };
 
   render() {
@@ -133,9 +145,11 @@ export default class Advance extends Component {
             <Form
               ref={c => (this._form = c)}
               type={AdvanceForm}
+              value={this.state.value}
+              onChange={this.onChange.bind(this)}
               options={options}
             />
-            <TouchableHighlight>
+            <TouchableOpacity>
               <View style={styles.button}>
                 <Button
                   color="#0A802B"
@@ -143,7 +157,7 @@ export default class Advance extends Component {
                   onPress={this.handleSubmit}
                 />
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

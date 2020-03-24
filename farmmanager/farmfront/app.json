@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Farm manager",
     "slug": "farm-manager",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -23,5 +23,5 @@
     "entryPoint": "node_modules/expo/AppEntry.js"
   },
   "displayName": "B",
-  "name": "farmApp"
+  "name": "Farm manager App"
 }

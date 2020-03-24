@@ -1,10 +1,14 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
+import ReactDom from "react-dom";
 import { View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
+import { Provider } from "react-redux";
+import store from "./src/store";
 
 import HomePage from "./src/components/HomePage";
 import SignUp from "./src/components/SignUp";
@@ -28,6 +32,7 @@ import ExpenditureLand from "./src/components/ExpenditureLand";
 import PayrollLand from "./src/components/PayrollLand";
 import RequisitionLand from "./src/components/RequisitionLand";
 import AdvanceLand from "./src/components/AdvanceLand";
+import User from "./src/components/User";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -35,7 +40,9 @@ const Stack = createStackNavigator();
 export default class App extends Component {
   render() {
     return (
-      <NavigationContainer>
+      <User />
+      // <Provider store={store}>
+      /* <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Landing Page" component={HomePage} />
           <Stack.Screen name="Finance" component={LandReportFinace} />
@@ -51,7 +58,12 @@ export default class App extends Component {
           <Stack.Screen name="advance" component={Advance} />
           <Stack.Screen name="advanceLand" component={AdvanceLand} />
         </Stack.Navigator>
-      </NavigationContainer>
+       </NavigationContainer> */
+      // <User />
+      /* <HomePage /> */
+      // </Provider>
     );
   }
 }
+
+// ReactDom.render(<App />, document.getElementById("app"));

@@ -80,3 +80,6 @@ __pycache__
 *.pyc
 .vscode
 vscode/
+
+.expo/*
+.expo-shared/*

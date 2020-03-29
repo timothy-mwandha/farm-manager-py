@@ -6,7 +6,7 @@ import { GET_USERS } from "./types";
 
 export const getUser = () => dispatch => {
     axios
-        .get("http://192.168.178.1:8000/api/user/")
+        .get("/api/user/")
         .then(res => {
             console.log(res);
             dispatch({

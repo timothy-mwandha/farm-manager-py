@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createStackNavigator } from "@react-navigation/stack";
+// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import { Provider } from "react-redux";
 import store from "./src/components/store";
@@ -34,8 +34,8 @@ import AdvanceLand from "./src/components/AdvanceLand";
 import User from "./src/components/User";
 import Users2 from "./src/components/Users2";
 
-const Tab = createMaterialBottomTabNavigator();
-const Stack = createStackNavigator();
+// const Tab = createMaterialBottomTabNavigator();
+// const Stack = createStackNavigator();
 
 export default class App extends Component {
     render() {
@@ -88,7 +88,7 @@ export default class App extends Component {
                         />
                     </Stack.Navigator>
                 </NavigationContainer> */}
-                <Users2 />
+                <User />
             </Provider>
         );
     }

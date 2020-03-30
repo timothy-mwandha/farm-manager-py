@@ -14,12 +14,12 @@ import moment from "moment";
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
 
-const Name = t.refinement(t.String, Name => {
+const name = t.refinement(t.String, name => {
   const regex = /^[a-zA-Z].*[\s\.]*$/g;
-  return regex.test(Name);
+  return regex.test(name);
 });
 
-var Gender = t.enums({
+var gender = t.enums({
   M: "Male",
   F: "Female"
 });
@@ -31,13 +31,13 @@ var Status = t.enums({
 
 const AdvanceForm = t.struct({
   ...Form.AdvanceForm,
-  Date: t.Date,
-  Name: Name,
-  Gender: Gender,
-  Position: t.maybe(t.String),
-  Status: Status,
-  AdvancedAmount: t.Number,
-  Decription: t.maybe(t.String)
+  date: t.Date,
+  name: name,
+  gender: gender,
+  position: t.maybe(t.String),
+  status: Status,
+  advancedamnt: t.Number,
+  decription: t.maybe(t.String)
 });
 
 const formStyles = {
@@ -63,7 +63,7 @@ const formStyles = {
 const options = {
   ...Form.options,
   fields: {
-    Date: {
+    date: {
       label: "Date",
       mode: "date",
       error: "Please enter a correct date",
@@ -73,13 +73,13 @@ const options = {
         format: date => moment(date).format("DD-MM-YYYY")
       }
     },
-    Name: {
+    name: {
       autoFocus: true,
       label: "Name",
       error: "Please enter a correct Name",
       returnKeyType: "next"
     },
-    Gender: {
+    gender: {
       label: "Gender",
       error: "You must select gender",
       returnKeyType: "next",
@@ -87,22 +87,22 @@ const options = {
         defaultValueText: "Select"
       }
     },
-    Position: {
+    position: {
       label: "Position",
       error: "Please enter the employee's position",
       returnKeyType: "next"
     },
-    Status: {
+    status: {
       label: "Status",
       error: "Please enter the status of the employee",
       returnKeyType: "next"
     },
-    AdvancedAmount: {
+    advancedamnt: {
       label: "Amount",
       error: "Please enter a correct advance Amount",
       returnKeyType: "next"
     },
-    Description: {
+    description: {
       label: "Description",
       error: "Put a description"
     }
@@ -111,11 +111,43 @@ const options = {
 };
 
 export default class Advance extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {};
   }
+
+  // componentDidMount() {
+  //   this.refs._form.getComponent("Name").refs.input.focus();
+  // }
+
+  InsertDataToServer = async () => {
+    fetch("http://e8d3158e.ngrok.io/api/advance/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        date: this.date,
+        name: this.name,
+        gender: this.gender,
+        position: this.position,
+        status: this.status,
+        advancedamnt: this.advancedamnt,
+        description: this.description
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        // alert("Thank You for Signing Up!");
+        alert(responseJson);
+        // this.props.navigation.navigate("HomePage");
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   onChange = value => {
     this.setState({ value });
@@ -126,14 +158,22 @@ export default class Advance extends Component {
     this.setState({ value: null });
   };
 
-  handleSubmit = event => {
+  handleSubmit = () => {
     const value = this._form.getValue();
-    if (value) {
-      console.log(value);
+    console.log(value);
+    if (value != null) {
+      (this.date = value.date),
+        (this.name = value.name),
+        (this.gender = value.gender),
+        (this.position = value.position),
+        (this.status = value.status),
+        (this.advancedamnt = value.advancedamnt),
+        (this.description = value.description),
+        this.InsertDataToServer();
       // clear all fields after submit
       this.clearForm();
       alert("Advance captured!");
-    }
+    } else console.log("No data entered");
   };
 
   render() {

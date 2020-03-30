@@ -13,13 +13,22 @@ import {
   Cell
 } from "react-native-table-component";
 
-export default class User extends Component {
+class User extends Component {
   static ProTypes = {
     myusers: PropTypes.array.isRequired
   };
   componentDidMount() {
-    //   this.props.getUsers();
-    return fetch("http://localhost:8000/api/user/");
+    return fetch("http://3c4d7e1a.ngrok.io/api/user/")
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.user
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -47,3 +56,64 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getUsers })(User);
+
+/////////mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmuser2.js
+// import React, { Component } from "react";
+// import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+
+// export default class Users2 extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             isLoading: true,
+//             dataSource: null
+//         };
+//     }
+
+//     componentDidMount (){
+
+//         return fetch( 'http://192.168.178.1:8000/api/user/')
+//         .then ( (response) => response.json() )
+//         .then( (responseJson) => {
+
+//             this.setState({
+//                 isLoading:false,
+//                 dataSource: responseJson.user,
+//             })
+//         })
+//         .catch((error) => {
+//             console.log(error)
+//         })
+//     }
+
+//     render() {
+//         if (this.state.isLoading){
+//             return(
+//                 <View style={styles.container}>
+//                     <ActivityIndicator />
+//                 </View>
+//             )
+//         }else {
+//             let users = this.state.dataSource.map((val, key) => {
+//                 return
+//                 <View key={name} style={styles.item}>
+//                     <Text>{val.name}</Text>
+//                 </View>
+//             });
+//         }
+//         return (
+//             <View style={styles.container}>
+//                 {users}
+//             </View>
+//         );
+//     }
+// }
+
+// const styles = StyleSheet.create({
+//     container:{
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         marginTop: 50
+
+//     }
+// })

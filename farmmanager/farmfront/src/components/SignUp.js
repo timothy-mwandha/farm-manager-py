@@ -93,7 +93,7 @@ export default class SignUp extends Component {
   // }
 
   InsertDataToServer = async () => {
-    fetch("http://ac23113a.ngrok.io/data", {
+    fetch("http://0b533b24.ngrok.io/api/user", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -106,30 +106,6 @@ export default class SignUp extends Component {
         password: this.Password
       })
     })
-      // .then(response => {
-      //   if (
-      //     response.statusText == "OK" &&
-      //     response.status >= 200 &&
-      //     response.status < 300
-      //   ) {
-      //     return response.json();
-      //   } else {
-      //     throw new Error("Server can't be reached!");
-      //   }
-      // })
-      // .then(json => {
-      //   alert("Thank You for Signing Up!");
-      //   this.props.navigation.navigate("Login");
-      //   console.log("hooray! we have json!");
-      //   console.log(json);
-      // })
-      // .catch(error => {
-      //   console.log("error fetching data");
-      //   console.log(error);
-      //   console.log(error.message); // Server can't be reached!
-      //   this.setState({ server_error: "request failed try again." });
-      // });
-
       .then(response => response.json())
       .then(responseJson => {
         // alert("Thank You for Signing Up!");

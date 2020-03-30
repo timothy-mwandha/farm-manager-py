@@ -43,12 +43,12 @@ const User = t.struct({
   Tax: t.maybe(t.Number),
   Description: t.maybe(t.String),
   Total: t.Number,
-  InvoiceNumber: t.Number,
+  InvoiceNumber: t.maybe(t.Number),
   AmountPaid: t.Number,
   PaymentMode: PaymentMode,
-  ReceiptNumber: t.Number,
-  BalanceDue: t.Number,
-  BalanceDueDate: t.Date
+  ReceiptNumber: t.maybe(t.Number),
+  BalanceDue: t.maybe(t.Number),
+  BalanceDueDate: t.maybe(t.Date)
 });
 
 const formStyles = {

@@ -1,3 +1,22 @@
+// // App.js
+
+// import React, { Component } from "react";
+// import NewUser from "./src/components/NewUser";
+
+// // import './node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+// class App extends Component {
+//   render() {
+//     return;(
+//       <View>
+//         <NewUser />
+//       </View>
+//     );
+//   }
+// }
+
+// export default App;
+
 import "react-native-gesture-handler";
 import React, { Component } from "react";
 import ReactDom from "react-dom";
@@ -40,9 +59,8 @@ const Stack = createStackNavigator();
 export default class App extends Component {
   render() {
     return (
-      <User />
-      // <Provider store={store}>
-      /* <NavigationContainer>
+      <Provider store={store}>
+        {/* <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Landing Page" component={HomePage} />
           <Stack.Screen name="Finance" component={LandReportFinace} />
@@ -58,12 +76,12 @@ export default class App extends Component {
           <Stack.Screen name="advance" component={Advance} />
           <Stack.Screen name="advanceLand" component={AdvanceLand} />
         </Stack.Navigator>
-       </NavigationContainer> */
-      // <User />
-      /* <HomePage /> */
-      // </Provider>
+      </NavigationContainer> */}
+        <User />
+        {/* <HomePage /> */}
+      </Provider>
     );
   }
 }
 
-// ReactDom.render(<App />, document.getElementById("app"));
+// // ReactDom.render(<App />, document.getElementById("app"));

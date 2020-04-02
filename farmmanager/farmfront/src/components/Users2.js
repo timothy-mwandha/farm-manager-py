@@ -113,9 +113,9 @@ export default Users2 = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.0.2.2:8000/api/user/')
+    fetch('http://localhost:8000/api/user/')
       .then((response) => response.json())
-      .then((json) => setData(json.movies))
+      .then((json) => setData(json.user))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   });

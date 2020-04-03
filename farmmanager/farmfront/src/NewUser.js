@@ -1,9 +1,9 @@
 // NewPost.js
 
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Form, Textinput } from "react-native";
 
-class NewUser extends React.Component {
+export default class NewUser extends React.Component {
   state = {
     name: "",
     email: "",
@@ -94,5 +94,3 @@ class NewUser extends React.Component {
     );
   }
 }
-
-export default NewUser;

@@ -25,7 +25,8 @@ SECRET_KEY = 'n-ye&9@&x1tv=cy_m63#ti&sunxtbs%dpra+qjh0wv*%7ca4k8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# "e8d3158e.ngrok.io" , '127.0.0.1', 'localhost', '192.168.122.255'
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'farmback',
     'farmfront',
     'rest_framework',
@@ -50,6 +52,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://127.0.0.1:8000',
 ]
 
 ROOT_URLCONF = 'farmmanager.urls'
@@ -121,3 +135,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# if DEBUG:
+
+#     from fnmatch import fnmatch
+#     class glob_list(list):
+#         def __contains__(self, key):
+#             for elt in self:
+#                 if fnmatch(key, elt): return True
+#             return False
+
+#     INTERNAL_IPS = glob_list(['127.0.0.1', '192.168.*.*'])

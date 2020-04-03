@@ -1,26 +1,7 @@
-// // App.js
-
-// import React, { Component } from "react";
-// import NewUser from "./src/components/NewUser";
-
-// // import './node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-// class App extends Component {
-//   render() {
-//     return;(
-//       <View>
-//         <NewUser />
-//       </View>
-//     );
-//   }
-// }
-
-// export default App;
-
 import "react-native-gesture-handler";
 import React, { Component } from "react";
 import ReactDom from "react-dom";
-import { View, Text, Button } from "react-native";
+import { AppRegistry, View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -51,7 +32,8 @@ import ExpenditureLand from "./src/components/ExpenditureLand";
 import PayrollLand from "./src/components/PayrollLand";
 import RequisitionLand from "./src/components/RequisitionLand";
 import AdvanceLand from "./src/components/AdvanceLand";
-import User from "./src/components/User";
+import Users from "./src/components/Users";
+import NewUser from "./src/NewUser";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -59,8 +41,8 @@ const Stack = createStackNavigator();
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        {/* <NavigationContainer>
+      // <Users />
+      <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Landing Page" component={HomePage} />
           <Stack.Screen name="Finance" component={LandReportFinace} />
@@ -70,18 +52,13 @@ export default class App extends Component {
           <Stack.Screen name="expenditureland" component={ExpenditureLand} />
           <Stack.Screen name="payrollLand" component={PayrollLand} />
           <Stack.Screen name="requisitionland" component={RequisitionLand} />
-          <Stack.Screen name="advanceland" component={AdvanceLand} />
           <Stack.Screen name="payroll" component={PayRoll} />
           <Stack.Screen name="requisitionForm" component={RequisitionForm} />
           <Stack.Screen name="advance" component={Advance} />
           <Stack.Screen name="advanceLand" component={AdvanceLand} />
         </Stack.Navigator>
-      </NavigationContainer> */}
-        <User />
-        {/* <HomePage /> */}
-      </Provider>
+      </NavigationContainer>
     );
   }
 }
-
-// // ReactDom.render(<App />, document.getElementById("app"));
+AppRegistry.registerComponent("App", () => App);

@@ -83,10 +83,10 @@ class AdvanceForm(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
+    position = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=100)
     advancedamnt = models.IntegerField()
-    decription = models.CharField(max_length=100)
+    description = models.CharField(max_length=100, blank=True)
 
 class Payroll(models.Model):
     date = models.DateTimeField(auto_now_add=True)

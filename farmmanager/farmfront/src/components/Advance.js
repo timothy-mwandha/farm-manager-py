@@ -37,7 +37,7 @@ const AdvanceForm = t.struct({
   position: t.maybe(t.String),
   status: Status,
   advancedamnt: t.Number,
-  decription: t.maybe(t.String)
+  description: t.maybe(t.String)
 });
 
 const formStyles = {
@@ -113,7 +113,6 @@ const options = {
 export default class Advance extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 
@@ -122,7 +121,7 @@ export default class Advance extends Component {
   // }
 
   InsertDataToServer = async () => {
-    fetch("http://e8d3158e.ngrok.io/api/advance/", {
+    fetch("http://127.0.0.1:8000/api/advance/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -140,14 +139,22 @@ export default class Advance extends Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        // alert("Thank You for Signing Up!");
-        alert(responseJson);
-        // this.props.navigation.navigate("HomePage");
+        return responseJson;
       })
       .catch(error => {
         console.error(error);
       });
   };
+
+  //   deleteData = (item, url) => {
+  //   return fetch(url + '/' + item, {
+  //     method: 'delete'
+  //   }).then(response =>
+  //     response.json().then(json => {
+  //       return json;
+  //     })
+  //   );
+  // }
 
   onChange = value => {
     this.setState({ value });
@@ -195,6 +202,7 @@ export default class Advance extends Component {
                   color="#0A802B"
                   title="SAVE"
                   onPress={this.handleSubmit}
+                  // onPress={() => navigation.navigate("Finance")}
                 />
               </View>
             </TouchableOpacity>

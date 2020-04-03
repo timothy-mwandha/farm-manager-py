@@ -14,7 +14,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-export default class ExpenditureLand extends Component {
+export default class Users extends Component {
   state = {
     data: [],
     loading: true
@@ -22,25 +22,25 @@ export default class ExpenditureLand extends Component {
 
   //Define your navigation options in a form of a method so you have access to navigation props.
   static navigationOptions = {
-    title: "Expenses"
+    title: "Users"
   };
 
   //Have the async keyword to indicate that it is asynchronous.
-  fetchExpenses = async () => {
+  fetchUsers = async () => {
     //Have a try and catch block for catching errors.
     try {
       //Assign the promise unresolved first then get the data using the json method.
-      const response = await fetch("http://127.0.0.1:8000/api/expenditure/");
-      const expenses = await response.json();
-      this.setState({ data: expenses });
+      const response = await fetch("http://127.0.0.1:8000/api/user/");
+      const users = await response.json();
+      this.setState({ data: users });
     } catch (error) {
-      console.log("Error fetching expenses data-----------", error);
+      console.log("Error fetching user data-----------", error);
     }
   };
 
   //Define your componentDidMount lifecycle hook that will retrieve data.
   componentDidMount() {
-    this.fetchExpenses();
+    this.fetchUsers();
   }
 
   render() {
@@ -63,20 +63,20 @@ export default class ExpenditureLand extends Component {
       >
         <ScrollView>
           <View style={styles.container}>
-            <Text style={styles.heading}> Expenditure Landing Page </Text>
+            <Text style={styles.heading}> Users List </Text>
             <FlatList
               data={data}
               keyExtractor={(x, i) => i}
               renderItem={({ item }) => (
                 <Text style={styles.labels}>
-                  {`${item.date} ${item.suppl} ${item.product} ${item.qty} ${item.amntpd}`}
+                  {`${item.name} ${item.email} ${item.phone}`}
                 </Text>
               )}
             />
             <Button
               title="ADD"
               style={{ position: "absolute", bottom: 0, left: 50, right: 50 }}
-              onPress={() => navigation.navigate("expenditureForm")}
+              // onPress={() => navigation.navigate("Landing Page")}
             />
           </View>
         </ScrollView>
@@ -110,3 +110,75 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// import React, { Component } from "react";
+// import { Text, View, StyleSheet } from "react-native";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { getUsers } from "../actions/users";
+// import {
+//   Table,
+//   TableWrapper,
+//   Row,
+//   Rows,
+//   Col,
+//   Cols,
+//   Cell
+// } from "react-native-table-component";
+
+// class Users extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
+//   // static ProTypes = {
+//   //   myusers: PropTypes.array.isRequired
+//   // };
+
+//   componentDidMount() {
+//     // this.props.getUsers();
+//     this.fetchUsers();
+//   }
+
+//   // fetchUsers() {
+//   //   fetch("http://539ef503.ngrok.io/api/user/")
+//   //     .then(response => response.json())
+//   //     .then(responseJson => {
+//   //       this.setState({
+//   //         isLoading: false,
+//   //         dataSource: responseJson.user
+//   //       });
+//   //     })
+//   //     .catch(error => {
+//   //       console.log(error);
+//   //     });
+//   // }
+
+//   render() {
+//     // const state = this.state;
+//     return (
+//       <View>
+//         <Text> USERS </Text>
+//         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+//           tableHead: ['ID', 'name', 'email', 'phone', 'password','']; tableData:
+//           [
+//           {this.props.myusers.map(
+//             user => (
+//               { id, name, email, phone, password }, (<Button>Delete</Button>)
+//             )
+//           )}
+//           ];
+//         </Table>
+//       </View>
+//     );
+//   }
+// }
+
+// const mapStateToProps = state => ({
+//   myusers: state.userReducer.users
+// });
+
+// export default connect(mapStateToProps, { getUsers })(Users);
+
+// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -1,16 +1,40 @@
-// postReducer.js
+import { GET_USER } from "../actions/types.js";
 
-import { ADD_USER, GET_USER, DELETE_USER } from "../actions/types";
+const initialState = {
+  users: []
+};
 
-export default function userReducer(state = [], action) {
+export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_USER:
-      return [...state, action.payload];
-    case DELETE_USER:
-      return state.filter(user => user._id !== action.payload.id);
     case GET_USER:
-      return action.users;
+      return {
+        ...state,
+        users: action.payload
+      };
+
     default:
       return state;
   }
 }
+
+// const ServiceReducer = (
+//     state = { isLoading: false, error: undefined, data: {} },
+//     action
+// ) => {
+//     switch (action.type) {
+//         case Actions.SERVICE_PENDING:
+//             return Object.assign({}, state, { isLoading: true });
+//         case Actions.SERVICE_ERROR:
+//             return Object.assign({}, state, {
+//                 isLoading: false,
+//                 error: action.error
+//             });
+//         case Actions.SERVICE_SUCCESS:
+//             return Object.assign({}, state, {
+//                 isLoading: false,
+//                 data: action.data
+//             });
+//         default:
+//             return state;
+//     }
+// };

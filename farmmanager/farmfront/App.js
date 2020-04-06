@@ -8,7 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import { Provider } from "react-redux";
-import store from "./src/store";
+// import store from "./src/store";
 
 import HomePage from "./src/components/HomePage";
 import SignUp from "./src/components/SignUp";
@@ -17,8 +17,8 @@ import PayRoll from "./src/components/PayRoll";
 import PasswordRecoveryOne from "./src/components/PasswordRecoveryOne";
 import PasswordRecoveryTwo from "./src/components/PasswordRecoveryTwo";
 import Advance from "./src/components/Advance";
-import ToolBinCard from "./src/components/ToolBinCard";
-import Personnel from "./src/components/Personnel";
+// import ToolBinCard from "./src/components/ToolBinCard";
+// import Personnel from "./src/components/Personnel";
 import ExpenditureForm from "./src/components/ExpenditureForm";
 import IncomeForm from "./src/components/IncomeForm";
 import BottomNav from "./src/components/BottomNav";

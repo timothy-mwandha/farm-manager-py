@@ -18,7 +18,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-export default class AdvanceLand extends Component {
+export default class AdvanceDetails extends Component {
   constructor() {
     super();
     this.state = {
@@ -112,7 +112,7 @@ export default class AdvanceLand extends Component {
     //Have a try and catch block for catching errors.
     try {
       //Assign the promise unresolved first then get the data using the json method.
-      const response = await fetch("http://127.0.0.1:8000/api/advance/");
+      const response = await fetch(`http://127.0.0.1:8000/api/advance/${id}/`);
       const advances = await response.json();
       this.setState({
         data: advances,

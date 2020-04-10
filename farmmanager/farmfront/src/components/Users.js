@@ -1,92 +1,63 @@
-import React, { Component, setState } from "react";
+//GEt users with redux
+import React, { Component } from "react";
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { fetchUsers } from "../actions/userActions";
+
 import {
-  Text,
-  View,
-  Button,
-  FlatList,
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-  KeyboardAvoidingView
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+  Table,
+  TableWrapper,
+  TouchableOpacity,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell
+} from "react-native-table-component";
 
-const Stack = createStackNavigator();
-
-export default class Users extends Component {
-  state = {
-    data: [],
-    loading: true
-  };
-
-  //Define your navigation options in a form of a method so you have access to navigation props.
-  static navigationOptions = {
-    title: "Users"
-  };
-
-  //Have the async keyword to indicate that it is asynchronous.
-  fetchUsers = async () => {
-    //Have a try and catch block for catching errors.
-    try {
-      //Assign the promise unresolved first then get the data using the json method.
-      const response = await fetch("http://127.0.0.1:8000/api/user/");
-      const users = await response.json();
-      this.setState({ data: users });
-    } catch (error) {
-      console.log("Error fetching user data-----------", error);
-    }
-  };
-
-  //Define your componentDidMount lifecycle hook that will retrieve data.
+class Users extends Component {
   componentDidMount() {
-    this.fetchUsers();
+    this.props.fetchUsers();
+  }
+  // componentDidUpdate
+  // componentWillReceiveProps
+  componentDidUpdate(nextProps) {
+    if (nextProps.newUser) {
+      this.props.users.unshift(nextProps.newUser);
+    }
   }
 
   render() {
-    //Destruct data and Loading from state.
-    const { data, loading } = this.state;
-    //Destruct navigation from props
-    const { navigation } = this.props;
-
-    //If laoding to false, return a FlatList which will have data, rednerItem, and keyExtractor props used.
-    //Data contains the data being  mapped over.
-    //RenderItem a callback return UI for each item.
-    //keyExtractor used for giving a unique identifier for each item.
-
-    // if (!loading) {
+    const UserItems = this.props.users.map(user => (
+      <View key={user.id}>
+        <Text>{user.name}</Text>
+        <Text>{user.email}</Text>
+        <Text>{user.phone}</Text>
+      </View>
+    ));
     return (
-      <KeyboardAvoidingView
-        style={styles.container1}
-        behavior="padding"
-        enabled
-      >
-        <ScrollView>
-          <View style={styles.container}>
-            <Text style={styles.heading}> Users List </Text>
-            <FlatList
-              data={data}
-              keyExtractor={(x, i) => i}
-              renderItem={({ item }) => (
-                <Text style={styles.labels}>
-                  {`${item.name} ${item.email} ${item.phone}`}
-                </Text>
-              )}
-            />
-            <Button
-              title="ADD"
-              style={{ position: "absolute", bottom: 0, left: 50, right: 50 }}
-              // onPress={() => navigation.navigate("Landing Page")}
-            />
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+      <View>
+        <Text> USERS LIST</Text>
+        {UserItems}
+      </View>
     );
-    // } else {
-    //   return <ActivityIndicator />;
-    // }
   }
 }
+Users.propTypes = {
+  fetchUsers: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired,
+  newUser: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  users: state.users.items,
+  newUser: state.users.item
+  //we do state.users because in our rootReducer(index.js) in reducers we have users: userReducer
+  // we use items because we get it from our userReducer
+});
+
+export default connect(mapStateToProps, { fetchUsers })(Users);
 
 const styles = StyleSheet.create({
   container: {
@@ -95,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "space-between",
     width: "100%",
-    backgroundColor: "#fff"
+    backgroundColor: "#F5FCFF"
   },
   heading: {
     margin: 10,
@@ -104,22 +75,41 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
 
-  labels: {
-    margin: 10,
-    color: "#000",
-    textAlign: "center"
+  TouchableOpacityStyle: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    height: 60,
+    backgroundColor: "green",
+    borderRadius: 100
+  },
+
+  TouchableOpacityAdd: {
+    color: "#fff",
+    width: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 30,
+    marginLeft: 20
   }
 });
 
-// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm G4t users without using redux
 // import React, { Component } from "react";
-// import { Text, View, StyleSheet } from "react-native";
+// import { Text, View, StyleSheet, FlatList } from "react-native";
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
-// import { getUsers } from "../actions/users";
+// import { fetchUsers } from "../actions/fetchUsers";
+// // import { bindActionCreators } from "redux";
 // import {
 //   Table,
 //   TableWrapper,
+//   TouchableOpacity,
 //   Row,
 //   Rows,
 //   Col,
@@ -128,57 +118,307 @@ const styles = StyleSheet.create({
 // } from "react-native-table-component";
 
 // class Users extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
-//   // static ProTypes = {
-//   //   myusers: PropTypes.array.isRequired
-//   // };
+//   static ProTypes = {
+//     myusers: PropTypes.array.isRequired
+//   };
 
 //   componentDidMount() {
-//     // this.props.getUsers();
-//     this.fetchUsers();
+//     this.props.fetchUsers();
 //   }
 
-//   // fetchUsers() {
-//   //   fetch("http://539ef503.ngrok.io/api/user/")
-//   //     .then(response => response.json())
-//   //     .then(responseJson => {
-//   //       this.setState({
-//   //         isLoading: false,
-//   //         dataSource: responseJson.user
-//   //       });
-//   //     })
-//   //     .catch(error => {
-//   //       console.log(error);
-//   //     });
-//   // }
+//   renderItem = ({ item }) => {
+//     let { navigation } = this.props;
+//     return (
+//       <TouchableOpacity
+//         style={{ flex: 1, flexDirection: "row", marginBottom: 3 }}
+//         onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}
+//         // onPress={() => navigation.navigate("advance")}
+//       >
+//         <View
+//           style={{
+//             flex: 1,
+//             alignSelf: "stretch",
+//             flexDirection: "row",
+//             height: 35,
+//             // borderBottomColor: "green",
+//             // borderBottomWidth: 2,
+//             margin: 10
+//           }}
+//         >
+//           <View style={{ flex: 1, alignSelf: "stretch" }}>
+//             <Text
+//               style={{
+//                 color: "#006400",
+//                 fontWeight: "bold",
+//                 fontSize: 16,
+//                 alignSelf: "stretch",
+//                 marginBottom: 3
+//               }}
+//             >
+//               {`${item.name}`}
+//             </Text>
+//             <Text
+//               style={{
+//                 color: "#228B22",
+//                 borderBottomWidth: 1.5,
+//                 borderBottomColor: "green"
+//               }}
+//             >{`${item.position}`}</Text>
+//           </View>
+//           <View style={{ flex: 2, alignSelf: "stretch" }}>
+//             <Text
+//               style={{
+//                 color: "#006400",
+//                 fontWeight: "bold",
+//                 fontSize: 16,
+//                 alignSelf: "stretch",
+//                 marginBottom: 3
+//               }}
+//             >{`${item.email}`}</Text>
+//             <Text
+//               style={{
+//                 color: "#228B22",
+//                 borderBottomWidth: 1.5,
+//                 borderBottomColor: "green"
+//               }}
+//             >{`${item.phone}`}</Text>
+//           </View>
+//           <View>
+//             <Text
+//               style={{
+//                 color: "#228B22",
+//                 borderBottomWidth: 1.5,
+//                 borderBottomColor: "green"
+//               }}
+//             >{`${item.password}`}</Text>
+//           </View>
+//         </View>
+//       </TouchableOpacity>
+//     );
+//   };
 
 //   render() {
-//     // const state = this.state;
+//     const state = this.state;
 //     return (
 //       <View>
-//         <Text> USERS </Text>
-//         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-//           tableHead: ['ID', 'name', 'email', 'phone', 'password','']; tableData:
-//           [
-//           {this.props.myusers.map(
+//         <Text> USERS LIST</Text>
+//         <FlatList
+//           data={this.props.myusers.map(
 //             user => (
-//               { id, name, email, phone, password }, (<Button>Delete</Button>)
+//               { id, name, email, phone, password }, (<Button> Delete </Button>)
+//             )
+//           )}
+//           renderItem={this.renderItem}
+//           keyExtractor={(item, index) => index}
+//           // ItemSeparatorComponent={this.renderSeparator}
+//         />
+//         {/* <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+//           tableHead: ['ID', 'name', 'email', 'phone', 'password',''];
+//           tableData:[
+//           {this.props.myusers.map(user => ({ id, name, email, phone, password }, (<Button> Delete </Button>)
 //             )
 //           )}
 //           ];
-//         </Table>
+//         </Table> */}
+//         {/* <TouchableOpacity
+//           style={styles.TouchableOpacityStyle}
+//           onPress={() => navigation.navigate("advance")}
+//         >
+//           <Text style={styles.TouchableOpacityAdd}>+</Text>
+//         </TouchableOpacity> */}
 //       </View>
 //     );
 //   }
 // }
 
 // const mapStateToProps = state => ({
-//   myusers: state.userReducer.users
+//   myusers: state.userReducer
 // });
 
-// export default connect(mapStateToProps, { getUsers })(Users);
+// // const ActionCreators = Object.assign({}, fetchUsers);
+// // const mapDispatchToProps = dispatch => ({
+// //   actions: bindActionCreators(ActionCreators, dispatch)
+// // });
 
-// xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// export default connect(mapStateToProps, { fetchUsers })(Users);
+// // export default connect(mapStateToProps, mapDispatchToProps)(Users);
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     flexDirection: "column",
+//     justifyContent: "space-between",
+//     alignContent: "space-between",
+//     width: "100%",
+//     backgroundColor: "#F5FCFF"
+//   },
+//   heading: {
+//     margin: 10,
+//     fontWeight: "bold",
+//     color: "#000",
+//     textAlign: "center"
+//   },
+
+//   TouchableOpacityStyle: {
+//     borderWidth: 1,
+//     borderColor: "rgba(0,0,0,0.2)",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     width: 60,
+//     position: "absolute",
+//     bottom: 10,
+//     right: 10,
+//     height: 60,
+//     backgroundColor: "green",
+//     borderRadius: 100
+//   },
+
+//   TouchableOpacityAdd: {
+//     color: "#fff",
+//     width: 40,
+//     alignItems: "center",
+//     justifyContent: "center",
+//     fontSize: 30,
+//     marginLeft: 20
+//   }
+// });
+// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+// // import React, { Component } from "react";
+// // import { Text, View, StyleSheet, FlatList } from "react-native";
+// // import { connect } from "react-redux";
+// // import PropTypes from "prop-types";
+// // import { getUsers } from "../actions/users";
+// // import { bindActionCreators } from "redux";
+// // import {
+// //   Table,
+// //   TableWrapper,
+// //   TouchableOpacity,
+// //   Row,
+// //   Rows,
+// //   Col,
+// //   Cols,
+// //   Cell
+// // } from "react-native-table-component";
+
+// // class Users extends Component {
+// //   static ProTypes = {
+// //     myusers: PropTypes.array.isRequired
+// //   };
+
+// //   componentDidMount() {
+// //     this.props.getUsers();
+// //   }
+
+// //   render() {
+// //     const state = this.state;
+// //     const data
+// //     return (
+// //       <View>
+// //         <Text> USERS LIST</Text>
+// //         <FlatList
+// //             data={data}
+// //             renderItem={this.renderItem}
+// //             keyExtractor={(item, index) => index}
+// //             // ItemSeparatorComponent={this.renderSeparator}
+// //           />
+// //         <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+// //           tableHead: ['ID', 'name', 'email', 'phone', 'password',''];
+// //           tableData:[
+// //           {this.props.myusers.map(user => ({ id, name, email, phone, password }, (<Button> Delete </Button>)
+// //             )
+// //           )}
+// //           ];
+// //         </Table>
+// //         {/* <TouchableOpacity
+// //           style={styles.TouchableOpacityStyle}
+// //           onPress={() => navigation.navigate("advance")}
+// //         >
+// //           <Text style={styles.TouchableOpacityAdd}>+</Text>
+// //         </TouchableOpacity> */}
+// //       </View>
+// //     );
+// //   }
+// // }
+
+// // const mapStateToProps = state => ({
+// //   myusers: state.userReducer.users
+// // });
+
+// // const ActionCreators = Object.assign({}, getUsers);
+// // const mapDispatchToProps = dispatch => ({
+// //   actions: bindActionCreators(ActionCreators, dispatch)
+// // });
+
+// // // export default connect(mapStateToProps, { getUsers })(Users);
+// // export default connect(mapStateToProps, mapDispatchToProps)(Users);
+
+// // const styles = StyleSheet.create({
+// //   container: {
+// //     flex: 1,
+// //     flexDirection: "column",
+// //     justifyContent: "space-between",
+// //     alignContent: "space-between",
+// //     width: "100%",
+// //     backgroundColor: "#F5FCFF"
+// //   },
+// //   heading: {
+// //     margin: 10,
+// //     fontWeight: "bold",
+// //     color: "#000",
+// //     textAlign: "center"
+// //   },
+
+// //   TouchableOpacityStyle: {
+// //     borderWidth: 1,
+// //     borderColor: "rgba(0,0,0,0.2)",
+// //     alignItems: "center",
+// //     justifyContent: "center",
+// //     width: 60,
+// //     position: "absolute",
+// //     bottom: 10,
+// //     right: 10,
+// //     height: 60,
+// //     backgroundColor: "green",
+// //     borderRadius: 100
+// //   },
+
+// //   TouchableOpacityAdd: {
+// //     color: "#fff",
+// //     width: 40,
+// //     alignItems: "center",
+// //     justifyContent: "center",
+// //     fontSize: 30,
+// //     marginLeft: 20
+// //   }
+// // });
+
+// // // // Post.js
+
+// // // import React from "react";
+
+// // // const styles = {
+// // //   borderBottom: "2px solid #eee",
+// // //   background: "#fafafa",
+// // //   margin: ".75rem auto",
+// // //   padding: ".6rem 1rem",
+// // //   maxWidth: "500px",
+// // //   borderRadius: "7px"
+// // // };
+
+// // // export default ({ user: { name, email, phone, password, _id }, onDelete }) => {
+// // //   return (
+// // //     <View style={styles}>
+// // //       <Text>{name}</Text>
+// // //       <Text>{email}</Text>
+// // //       <Text>{phone}</Text>
+// // //       <Text>{password}</Text>
+// // //       <Button
+// // //         className="btn btn-danger"
+// // //         type="button"
+// // //         onClick={() => onDelete(_id)}
+// // //       >
+// // //         Remove
+// // //       </Button>
+// // //     </View>
+// // //   );
+// // // };

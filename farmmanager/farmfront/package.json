@@ -41,7 +41,7 @@
     "moment-timezone": "^0.5.27",
     "mysql": "^2.18.1",
     "prop-types": "^15.7.2",
-    "react": "~16.9.0",
+    "react": "^16.9.0",
     "react-datepicker": "^2.12.1",
     "react-dom": "^16.9.0",
     "react-moment": "^0.9.7",

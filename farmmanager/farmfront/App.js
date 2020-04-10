@@ -33,31 +33,37 @@ import PayrollLand from "./src/components/PayrollLand";
 import RequisitionLand from "./src/components/RequisitionLand";
 import AdvanceLand from "./src/components/AdvanceLand";
 import Users from "./src/components/Users";
-import NewUser from "./src/NewUser";
+import UsersView from "./src/components/UsersView";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
+// import configureStore from "./src/store/configureStore";
+
+// const store = configureStore();
+
 export default class App extends Component {
   render() {
     return (
-      // <Users />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Landing Page" component={HomePage} />
-          <Stack.Screen name="Finance" component={LandReportFinace} />
-          <Stack.Screen name="incomeForm" component={IncomeForm} />
-          <Stack.Screen name="expenditureForm" component={ExpenditureForm} />
-          <Stack.Screen name="incomeLand" component={IncomeLand} />
-          <Stack.Screen name="expenditureland" component={ExpenditureLand} />
-          <Stack.Screen name="payrollLand" component={PayrollLand} />
-          <Stack.Screen name="requisitionland" component={RequisitionLand} />
-          <Stack.Screen name="payroll" component={PayRoll} />
-          <Stack.Screen name="requisitionForm" component={RequisitionForm} />
-          <Stack.Screen name="advance" component={Advance} />
-          <Stack.Screen name="advanceLand" component={AdvanceLand} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        {/* <Users /> */}
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Landing Page" component={HomePage} />
+            <Stack.Screen name="Finance" component={LandReportFinace} />
+            <Stack.Screen name="incomeForm" component={IncomeForm} />
+            <Stack.Screen name="expenditureForm" component={ExpenditureForm} />
+            <Stack.Screen name="incomeLand" component={IncomeLand} />
+            <Stack.Screen name="expenditureland" component={ExpenditureLand} />
+            <Stack.Screen name="payrollLand" component={PayrollLand} />
+            <Stack.Screen name="requisitionland" component={RequisitionLand} />
+            <Stack.Screen name="payroll" component={PayRoll} />
+            <Stack.Screen name="requisitionForm" component={RequisitionForm} />
+            <Stack.Screen name="advance" component={Advance} />
+            <Stack.Screen name="advanceLand" component={AdvanceLand} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }

@@ -12,17 +12,14 @@ import moment from "moment";
 
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
-const Email = t.refinement(t.String, Email => {
-  const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/; //or any other regexp
-  return reg.test(Email);
+
+const Phone = t.refinement(t.Number, Phone => {
+  const reg = /^[0]?[0-9]\d{8}$/;
+  return reg.test(Phone);
 });
-// const Phone = t.refinement(t.Number, Phone => {
-//     const reg = /^[1-9]\d{2}-\d{3}-\d{4}/;
-//     return reg.test(Phone);
-//});
-const Name = t.refinement(t.String, Name => {
+const Supplier = t.refinement(t.String, Supplier => {
   const regex = /^[a-zA-Z].*[\s\.]*$/g;
-  return regex.test(Name);
+  return regex.test(Supplier);
 });
 
 const TypeOfExpense = t.enums({
@@ -37,8 +34,8 @@ const PaymentMode = t.enums({
 
 const Expenditure = t.struct({
   Date: t.Date,
-  Supplier: t.String,
-  Phone: t.Number,
+  Supplier: Supplier,
+  Phone: Phone,
   Product: t.String,
   TypeOfExpense: TypeOfExpense,
   Unit: t.String,
@@ -52,8 +49,8 @@ const Expenditure = t.struct({
   AmountPaid: t.Number,
   PaymentMode: PaymentMode,
   ReceiptNumber: t.Number,
-  BalanceDue: t.Number,
-  BalanceDueDate: t.Date
+  BalanceDue: t.maybe(t.Number),
+  BalanceDueDate: t.maybe(t.Date)
 });
 
 const formStyles = {

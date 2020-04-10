@@ -1,13 +1,10 @@
 // index.js
 import { combineReducers } from "redux";
-import users from "./userReducer";
+import userReducer from "./userReducer";
+import advanceReducer from "./advanceReducer";
 
 export default combineReducers({
-  // users: users
-  userReducer: users
+  users: userReducer,
+  advances:advanceReducer
 });
 
-// import { combineReducers } from "redux";
-// import UserReducer from "./UserReducer";
-
-// export default combineReducers({ UserReducer });

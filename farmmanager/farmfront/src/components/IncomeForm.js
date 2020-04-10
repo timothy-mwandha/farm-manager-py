@@ -13,17 +13,14 @@ import moment from "moment";
 
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
-const Email = t.refinement(t.String, Email => {
-  const reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/; //or any other regexp
-  return reg.test(Email);
+
+const Phone = t.refinement(t.Number, Phone => {
+  const reg = /^[0]?[0-9]\d{8}$/;
+  return reg.test(Phone);
 });
-// const Phone = t.refinement(t.Number, Phone => {
-//     const reg = /^[1-9]\d{2}-\d{3}-\d{4}/;
-//     return reg.test(Phone);
-//});
-const Name = t.refinement(t.String, Name => {
+const Customer = t.refinement(t.String, Customer => {
   const regex = /^[a-zA-Z].*[\s\.]*$/g;
-  return regex.test(Name);
+  return regex.test(Customer);
 });
 
 const PaymentMode = t.enums({
@@ -31,10 +28,10 @@ const PaymentMode = t.enums({
   Credit: "Credit"
 });
 
-const User = t.struct({
+const Income = t.struct({
   Date: t.Date,
-  Customer: t.String,
-  Phone: t.Number,
+  Customer: Customer,
+  Phone: Phone,
   Product: t.String,
   Unit: t.String,
   UnitPrice: t.Number,
@@ -135,10 +132,47 @@ const options = {
 };
 
 export default class IncomeForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
+
+  InsertDataToServer = async () => {
+    fetch("http://127.0.0.1:8000/api/income/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        date: this.Date,
+        customer: this.Customer,
+        phone: this.Phone,
+        product: this.Product,
+        unit: this.Unit,
+        unitprice: this.UnitPrice,
+        quantity: this.Quantity,
+        subtotal: this.SubTotal,
+        tax: this.Tax,
+        descript: this.Description,
+        total: this.Total,
+        invnumber: this.InvoiceNumber,
+        amountpaid: this.AmountPaid,
+        paymode: this.PaymentMode,
+        receiptnum: this.ReceiptNumber,
+        baldue: this.BalanceDue,
+        balduedate: this.BalanceDueDate
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   onChange = value => {
     this.setState({ value });
   };
@@ -148,34 +182,68 @@ export default class IncomeForm extends Component {
     this.setState({ value: null });
   };
 
-  handleSubmit = event => {
+  handleSubmit = () => {
     const value = this._form.getValue();
-    if (value) {
-      console.log(value);
+    console.log(value);
+    if (value != null) {
+      (this.Date = value.Date),
+        (this.Customer = value.Customer),
+        (this.Phone = value.Phone),
+        (this.Product = value.Product),
+        (this.Unit = value.Unit),
+        (this.UnitPrice = value.UnitPrice),
+        (this.Quantity = value.Quantity),
+        (this.SubTotal = value.SubTotal),
+        (this.Tax = value.Tax),
+        (this.Description = value.Description),
+        (this.Total = value.Total),
+        (this.InvoiceNumber = value.InvoiceNumber),
+        (this.AmountPaid = value.AmountPaid),
+        (this.PaymentMode = value.PaymentMode),
+        (this.ReceiptNumber = value.ReceiptNumber),
+        (this.BalanceDue = value.BalanceDue),
+        (this.BalanceDueDate = value.BalanceDueDate),
+        // (this.Date = value.date),
+        //   (this.Customer = value.customer),
+        //   (this.Phone = value.phone),
+        //   (this.Product = value.product),
+        //   (this.Unit = value.unit),
+        //   (this.UnitPrice = value.unitprice),
+        //   (this.Quantity = value.quantity),
+        //   (this.SubTotal = value.subtotal),
+        //   (this.Tax = value.tax),
+        //   (this.Description = value.descript),
+        //   (this.Total = value.total),
+        //   (this.InvoiceNumber = value.invnumber),
+        //   (this.AmountPaid = value.amountpaid),
+        //   (this.PaymentMode = value.paymode),
+        //   (this.ReceiptNumber = value.receiptnum),
+        //   (this.BalanceDue = value.baldue),
+        //   (this.BalanceDueDate = value.balduedate);
+        this.InsertDataToServer();
       // clear all fields after submit
       this.clearForm();
       alert("Income captured!");
-      console.log(value.Quantity);
-    }
+    } else console.log("No data entered");
   };
 
-  handlenum1Change = evt => {
-    const num1 = this._form.getValue().Quantity;
-    num1 = Number(evt.target.value);
-    this.setState(prevState => ({
-      num1,
-      result: num1 + prevState.num2
-    }));
-  };
+  // handlenum1Change = evt => {
+  //   const num1 = this._form.getValue().Quantity;
+  //   num1 = Number(evt.target.value);
+  //   this.setState(prevState => ({
+  //     num1,
+  //     result: num1 + prevState.num2
+  //   }));
+  // };
 
-  handlenum2Change = evt => {
-    const num2 = this._form.getValue().UnitPrice;
-    num2 = Number(evt.target.value);
-    this.setState(prevState => ({
-      num2,
-      result: prevState.num1 + num2
-    }));
-  };
+  // handlenum2Change = evt => {
+  //   const num2 = this._form.getValue().UnitPrice;
+  //   num2 = Number(evt.target.value);
+  //   this.setState(prevState => ({
+  //     num2,
+  //     result: prevState.num1 + num2
+  //   }));
+  // };
 
   render() {
     return (
@@ -185,7 +253,7 @@ export default class IncomeForm extends Component {
             <Text style={styles.title}>Income</Text>
             <Form
               ref={c => (this._form = c)}
-              type={User}
+              type={Income}
               value={this.state.value}
               onChange={this.onChange.bind(this)}
               options={options}

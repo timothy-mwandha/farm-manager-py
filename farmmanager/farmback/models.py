@@ -21,7 +21,7 @@ class Personnel(models.Model):
 
 
 class Income(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     customer = models.CharField(max_length=100)
     phone = models.IntegerField()
     product = models.CharField(max_length=50)
@@ -37,11 +37,11 @@ class Income(models.Model):
     paymode = models.CharField(max_length=50)
     receiptnum = models.IntegerField(blank=True)
     baldue = models.IntegerField(blank=True)
-    balduedate = models.DateTimeField(blank=True)
+    balduedate = models.DateField(blank=True)
 
 
 class Expenditure(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     suppl = models.CharField(max_length=100)
     phone = models.IntegerField()
     product = models.CharField(max_length=50)
@@ -55,12 +55,12 @@ class Expenditure(models.Model):
     invno = models.IntegerField(blank=True)
     amntpd = models.IntegerField()
     paymod = models.CharField(max_length=50)
-    rcptno = models.IntegerField(blank=True)
+    rcptno = models.IntegerField()
     baldue = models.IntegerField(blank=True)
-    baldate = models.DateTimeField(blank=True)
+    baldate = models.DateField(blank=True)
 
 class Consumable(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date =models.DateField()
     name = models.CharField(max_length=100)
     qty = models.IntegerField()
     qtyused = models.IntegerField()
@@ -71,7 +71,7 @@ class Consumable(models.Model):
 
 
 class Harvest(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     qty = models.IntegerField()
     units = models.IntegerField()
     source = models.CharField(max_length=100)
@@ -80,7 +80,7 @@ class Harvest(models.Model):
 
 
 class AdvanceForm(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     position = models.CharField(max_length=100, blank=True)
@@ -89,15 +89,16 @@ class AdvanceForm(models.Model):
     description = models.CharField(max_length=100, blank=True)
 
 class Payroll(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
+    position = models.CharField(max_length=100,blank=True)
     status = models.CharField(max_length=100)
     paymod = models.CharField(max_length=50)
     salaryamnt = models.IntegerField()
     paye = models.IntegerField(blank=True)
     nssf1 = models.IntegerField(blank=True)
+    nssf2 = models.IntegerField(blank=True)
     tax = models.IntegerField(blank=True)
     lst = models.IntegerField(blank=True)
     advance = models.IntegerField(blank=True)
@@ -106,7 +107,7 @@ class Payroll(models.Model):
 
 
 class Requisition(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     costtype = models.CharField(max_length=100)
     units = models.IntegerField()
     activity = models.CharField(max_length=100)

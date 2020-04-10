@@ -1,6 +1,6 @@
 // // postReducer.js
 
-import { FETCH_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "../actions/types";
+import { FETCH_ADVANCES, ADD_ADVANCE, DELETE_ADVANCE, UPDATE_ADVANCE } from "../actions/types";
 
 const initialState = {
     items: [],
@@ -9,13 +9,13 @@ const initialState = {
 
 export default function (state=initialState, action){
     switch(action.type){
-      case FETCH_USERS:
+      case FETCH_ADVANCES:
        return {
            ...state,
            items:action.payload
-        //    items:action.users // the payload can be users if you used users in place of payload 
+        //    items:action.advances // the payload can be advances if you used advances in place of payload 
        };
-       case ADD_USER:
+       case ADD_ADVANCE:
        return {
            ...state,
            item:action.payload
@@ -24,3 +24,6 @@ export default function (state=initialState, action){
         return state;
     }
 }
+
+
+

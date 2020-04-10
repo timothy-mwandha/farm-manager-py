@@ -1,4 +1,232 @@
+// import React, { Component } from "react";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { addAdvance } from "../actions/advanceActions";
+// import {
+//   ScrollView,
+//   View,
+//   StyleSheet,
+//   Text,
+//   Button,
+//   Linking,
+//   KeyboardAvoidingView,
+//   TouchableOpacity
+// } from "react-native";
+// import moment from "moment";
+
+// var t = require("tcomb-form-native");
+// const Form = t.form.Form;
+
+// const name = t.refinement(t.String, name => {
+//   const regex = /^[a-zA-Z].*[\s\.]*$/g;
+//   return regex.test(name);
+// });
+
+// // const myFormatFunction = format => date => formatDate(format, date);
+// // const myFormat1 = "yyyy-mm-d h:f:s";
+// // const myFormat2 = "yyyy-mm-d";
+
+// var gender = t.enums({
+//   M: "Male",
+//   F: "Female"
+// });
+
+// var Status = t.enums({
+//   Permanent: "Permanent",
+//   Temporary: "Temporary"
+// });
+
+// const AdvanceForm = t.struct({
+//   ...Form.AdvanceForm,
+//   date: t.Date,
+//   name: name,
+//   gender: gender,
+//   position: t.maybe(t.String),
+//   status: Status,
+//   advancedamnt: t.Number,
+//   description: t.maybe(t.String)
+// });
+
+// const formStyles = {
+//   ...Form.stylesheet,
+//   formGroup: {
+//     normal: {}
+//   },
+//   controlLabel: {
+//     normal: {
+//       color: "#650205",
+//       fontSize: 20
+//     },
+
+//     error: {
+//       color: "red",
+//       fontSize: 18,
+//       marginBottom: 7,
+//       fontWeight: "600"
+//     }
+//   }
+// };
+
+// const options = {
+//   ...Form.options,
+//   fields: {
+//     // date: {
+//     //   label: "Date",
+//     //   mode: "date",
+//     //   error: "Please select date",
+//     //   config: {
+//     //     defaultValueText: "Select", // Allows you to format the PlaceHolders !!
+//     //     format: myFormatFunction(myFormat2)
+//     //   }
+//     // },
+//     date: {
+//       label: "Date",
+//       mode: "date",
+//       error: "Please enter a correct date",
+//       returnKeyType: "next",
+//       config: {
+//         defaultValueText: "Select",
+//         format: date => moment(date).format("DD-MM-YYYY")
+//       }
+//     },
+//     name: {
+//       autoFocus: true,
+//       label: "Name",
+//       error: "Please enter a correct Name",
+//       returnKeyType: "next"
+//     },
+//     gender: {
+//       label: "Gender",
+//       error: "You must select gender",
+//       returnKeyType: "next",
+//       config: {
+//         defaultValueText: "Select"
+//       }
+//     },
+//     position: {
+//       label: "Position",
+//       error: "Please enter the employee's position",
+//       returnKeyType: "next"
+//     },
+//     status: {
+//       label: "Status",
+//       error: "Please enter the status of the employee",
+//       returnKeyType: "next"
+//     },
+//     advancedamnt: {
+//       label: "Amount",
+//       error: "Please enter a correct advance Amount",
+//       returnKeyType: "next"
+//     },
+//     description: {
+//       label: "Description",
+//       error: "Put a description"
+//     }
+//   },
+//   stylesheet: formStyles
+// };
+
+// class Advance extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       date: "",
+//       name: "",
+//       gender: "",
+//       position: "",
+//       status: "",
+//       advancedamnt: "",
+//       description: ""
+//     };
+
+//     this.onChange = this.onChange.bind(this);
+//     this.handleSubmit = this.handleSubmit.bind(this);
+//     // this.onSubmit = this.onSubmit.bind(this);
+//   }
+
+//   // onChange(e) {
+//   //   this.setState({ [e.target.name]: e.target.value });
+//   // }
+
+//   onChange = value => {
+//     this.setState({ value });
+//   };
+
+//   handleSubmit(e) {
+//     e.preventDefault();
+
+//     const advance = {
+//       date: this.state.date,
+//       name: this.state.name,
+//       gender: this.state.gender,
+//       position: this.state.position,
+//       status: this.state.status,
+//       advancedamnt: this.state.advancedamnt,
+//       description: this.state.description
+//     };
+
+//     this.props.addAdvance(advance);
+//   }
+
+//   render() {
+//     return (
+//       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+//         <ScrollView>
+//           <View>
+//             <Text style={styles.title}>Advance Form</Text>
+//             <Form
+//               ref={c => (this._form = c)}
+//               type={AdvanceForm}
+//               value={this.state.value}
+//               onchange={this.onchange}
+//               // onChange={this.onChange.bind(this)}
+//               options={options}
+//             />
+//             <TouchableOpacity>
+//               <View style={styles.button}>
+//                 <Button
+//                   color="#0A802B"
+//                   title="SAVE"
+//                   onPress={this.handleSubmit}
+//                   // onPress={() => navigation.navigate("Finance")}
+//                 />
+//               </View>
+//             </TouchableOpacity>
+//           </View>
+//         </ScrollView>
+//       </KeyboardAvoidingView>
+//     );
+//   }
+// }
+// Advance.propTypes = {
+//   addAdvance: PropTypes.func.isRequired
+// };
+
+// export default connect(null, { addAdvance })(Advance);
+
+// const styles = StyleSheet.create({
+//   container: {
+//     justifyContent: "center",
+//     marginTop: 15,
+//     padding: 20
+//   },
+//   title: {
+//     fontSize: 35,
+//     marginTop: 5,
+//     color: "#650205",
+//     textAlign: "center",
+//     marginBottom: 25
+//   },
+//   button: {
+//     marginBottom: 15
+//   }
+// });
+
+// Post data without redux
 import React, { Component } from "react";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { addAdvance } from "../actions/advanceActions";
 import {
   ScrollView,
   View,
@@ -18,6 +246,10 @@ const name = t.refinement(t.String, name => {
   const regex = /^[a-zA-Z].*[\s\.]*$/g;
   return regex.test(name);
 });
+
+// const myFormatFunction = format => date => formatDate(format, date);
+// const myFormat1 = "yyyy-mm-d h:f:s";
+// const myFormat2 = "yyyy-mm-d";
 
 var gender = t.enums({
   M: "Male",
@@ -63,6 +295,15 @@ const formStyles = {
 const options = {
   ...Form.options,
   fields: {
+    // date: {
+    //   label: "Date",
+    //   mode: "date",
+    //   error: "Please select date",
+    //   config: {
+    //     defaultValueText: "Select", // Allows you to format the PlaceHolders !!
+    //     format: myFormatFunction(myFormat2)
+    //   }
+    // },
     date: {
       label: "Date",
       mode: "date",
@@ -70,7 +311,7 @@ const options = {
       returnKeyType: "next",
       config: {
         defaultValueText: "Select",
-        format: date => moment(date).format("DD-MM-YYYY")
+        format: date => moment(date).format("YYYY-DD-MM")
       }
     },
     name: {
@@ -116,10 +357,6 @@ export default class Advance extends Component {
     this.state = {};
   }
 
-  // componentDidMount() {
-  //   this.refs._form.getComponent("Name").refs.input.focus();
-  // }
-
   InsertDataToServer = async () => {
     fetch("http://127.0.0.1:8000/api/advance/", {
       method: "POST",
@@ -145,16 +382,6 @@ export default class Advance extends Component {
         console.error(error);
       });
   };
-
-  //   deleteData = (item, url) => {
-  //   return fetch(url + '/' + item, {
-  //     method: 'delete'
-  //   }).then(response =>
-  //     response.json().then(json => {
-  //       return json;
-  //     })
-  //   );
-  // }
 
   onChange = value => {
     this.setState({ value });
@@ -193,7 +420,8 @@ export default class Advance extends Component {
               ref={c => (this._form = c)}
               type={AdvanceForm}
               value={this.state.value}
-              onChange={this.onChange.bind(this)}
+              onchange={this.onchange}
+              // onChange={this.onChange.bind(this)}
               options={options}
             />
             <TouchableOpacity>

@@ -41,7 +41,7 @@
 //     }
 // };
 
-import { GET_ADVANCE } from "../actions/types";
+import { GET_ADVANCE, DELETE_ADVANCE } from "../actions/types";
 
 const initialState = {
     items: [],
@@ -55,6 +55,13 @@ export default function (state = initialState, action) {
                 ...state,
                 items: action.payload,
             };
+
+        case DELETE_ADVANCE:
+            return {
+                ...state,
+                items: state.items.filter(items => items.id !== action.payload),
+            };
+
         default:
             return state;
     }

@@ -271,8 +271,15 @@
 // });
 
 import React, { Component } from "react";
-import { Text, View } from "react-native";
-import { getAdvances } from "../actions/AdvanceActions";
+import {
+    Text,
+    View,
+    Button,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    ScrollView,
+} from "react-native";
+import { getAdvances, deleteAdvance } from "../actions/AdvanceActions";
 import { connect } from "react-redux";
 
 class AdvanceLand extends Component {
@@ -283,17 +290,37 @@ class AdvanceLand extends Component {
     render() {
         const advanceItems = this.props.advances.map((advances) => (
             <View key={advances.id}>
-                <Text>{advances.name}</Text>
-                <Text>{advances.position}</Text>
-                <Text>{advances.advancedamnt}</Text>
-                <Text>{advances.date}</Text>
+                <TouchableOpacity>
+                    <Text>Name :          {advances.name}</Text>
+                    <Text>Position:       {advances.position}</Text>
+                    <Text>Amount:       {advances.advancedamnt}</Text>
+                    <Text>Date:             {advances.date}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={this.props.deleteAdvance.bind(this, advances.id)}
+                    style={{
+                        flex: 1,
+                        alignSelf: "stretch",
+                        flexDirection: "row",
+                        backgroundColor: "#cedcf2",
+                        height: 35,
+                        borderBottomColor: "#cedcf2",
+                        fontSize: 30,
+                        borderBottomWidth: 2,
+                        margin: 10,
+                    }}
+                >
+                    <Text>Delete</Text>
+                </TouchableOpacity>
             </View>
         ));
         return (
-            <View>
-                <Text> textInComponent </Text>
-                {advanceItems}
-            </View>
+            <ScrollView>
+                <View>
+                    <Text> Advance Summary </Text>
+                    {advanceItems}
+                </View>
+            </ScrollView>
         );
     }
 }
@@ -302,4 +329,4 @@ const mapStateToProps = (state) => ({
     advances: state.advances.items,
 });
 
-export default connect(mapStateToProps, { getAdvances })(AdvanceLand);
+export default connect(mapStateToProps, { getAdvances, deleteAdvance })(AdvanceLand);

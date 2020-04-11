@@ -22,11 +22,11 @@ export default function HomePage({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("Inventory")}
+        onPress={() => navigation.navigate("Stores")}
         style={styles.inventory}
       >
         <View>
-          <Text>INVENTORY</Text>
+          <Text>STORES</Text>
         </View>
       </TouchableOpacity>
 

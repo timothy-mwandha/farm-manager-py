@@ -32,8 +32,11 @@ import ExpenditureLand from "./src/components/ExpenditureLand";
 import PayrollLand from "./src/components/PayrollLand";
 import RequisitionLand from "./src/components/RequisitionLand";
 import AdvanceLand from "./src/components/AdvanceLand";
+import ToolsLand from "./src/components/ToolsLand";
+import HarvestLand from "./src/components/HarvestLand";
+import ConsumableLand from "./src/components/ConsumableLand";
 import Users from "./src/components/Users";
-import UsersView from "./src/components/UsersView";
+// import UsersView from "./src/components/UsersView";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -50,6 +53,13 @@ export default class App extends Component {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Landing Page" component={HomePage} />
+            <Stack.Screen name="Stores" component={LandReportInventory} />
+            <Stack.Screen name="ConsumableLand" component={ConsumableLand} />
+            <Stack.Screen name="ToolsLand" component={ToolsLand} />
+            <Stack.Screen name="HarvestLand" component={HarvestLand} />
+            <Stack.Screen name="ToolBinCard" component={ToolBinCard} />
+            <Stack.Screen name="Harvest" component={Harvest} />
+            <Stack.Screen name="Consumable" component={Consumable} />
             <Stack.Screen name="Finance" component={LandReportFinace} />
             <Stack.Screen name="incomeForm" component={IncomeForm} />
             <Stack.Screen name="expenditureForm" component={ExpenditureForm} />

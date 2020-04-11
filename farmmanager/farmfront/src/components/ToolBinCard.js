@@ -143,33 +143,33 @@ export default class ToolBinCard extends Component {
     console.log("value: ", value);
   };
   componentDidMount() {
-    this.getPermissionAsync();
+    // this.getPermissionAsync();
     console.log("hi");
   }
 
-  getPermissionAsync = async () => {
-    if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== "granted") {
-        alert("Sorry, get camera permissions first!");
-      }
-    }
-  };
+  // getPermissionAsync = async () => {
+  //   if (Constants.platform.ios) {
+  //     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  //     if (status !== "granted") {
+  //       alert("Sorry, get camera permissions first!");
+  //     }
+  //   }
+  // };
 
-  _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
-    });
+  // _pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1
+  //   });
 
-    console.log(result);
+  //   console.log(result);
 
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
+  //   if (!result.cancelled) {
+  //     this.setState({ image: result.uri });
+  //   }
+  // };
 
   render() {
     let { image } = this.state;
@@ -179,13 +179,13 @@ export default class ToolBinCard extends Component {
           <View>
             <Text style={styles.title}>Tool Bin Card</Text>
             <Form ref={c => (this._form = c)} type={User} options={options} />
-            <Button title="Select Image." onPress={this._pickImage} />
+            {/* <Button title="Select Image." onPress={this._pickImage} />
             {image && (
               <Image
                 source={{ uri: image }}
                 style={{ width: 200, height: 200 }}
               />
-            )}
+            )} */}
             <View style={styles.button}>
               <Button
                 color="#0A802B"

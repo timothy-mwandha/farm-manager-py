@@ -1,124 +1,124 @@
-import React, { Component } from "react";
-import {
-    Text,
-    View,
-    Button,
-    FlatList,
-    StyleSheet,
-    ScrollView,
-    AppRegistry,
-    Image,
-    ActivityIndicator,
-    TouchableOpacity,
-    ToastAndroid,
-    KeyboardAvoidingView,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+// import React, { Component } from "react";
+// import {
+//     Text,
+//     View,
+//     Button,
+//     FlatList,
+//     StyleSheet,
+//     ScrollView,
+//     AppRegistry,
+//     Image,
+//     ActivityIndicator,
+//     TouchableOpacity,
+//     ToastAndroid,
+//     KeyboardAvoidingView,
+// } from "react-native";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createStackNavigator } from "@react-navigation/stack";
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 
-export default class AdvanceDetails extends Component {
-    constructor() {
-        super();
-        this.state = {
-            data: [],
-            isLoading: true,
-        };
-    }
+// export default class AdvanceDetails extends Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             data: [],
+//             isLoading: true,
+//         };
+//     }
 
-    //Define your navigation options in a form of a method so you have access to navigation props.
-    static navigationOptions = {
-        title: "Advances",
-    };
+//     //Define your navigation options in a form of a method so you have access to navigation props.
+//     static navigationOptions = {
+//         title: "Advances",
+//     };
 
-    renderItem = ({ item }) => {
-        let { navigation } = this.props;
-        return (
-            <TouchableOpacity
-                style={{ flex: 1, flexDirection: "row", marginBottom: 3 }}
-                // onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}
-                onPress={() => navigation.navigate("advance")}
-            >
-                <View
-                    style={{
-                        flex: 1,
-                        alignSelf: "stretch",
-                        flexDirection: "row",
-                        height: 35,
-                        // borderBottomColor: "green",
-                        // borderBottomWidth: 2,
-                        margin: 10,
-                    }}
-                >
-                    <View style={{ flex: 1, alignSelf: "stretch" }}>
-                        <Text
-                            style={{
-                                color: "#006400",
-                                fontWeight: "bold",
-                                fontSize: 16,
-                                alignSelf: "stretch",
-                                marginBottom: 3,
-                            }}
-                        >
-                           Date: {`${item.date}`}
-                        </Text>
-                        <Text
-                            style={{
-                                color: "#228B22",
-                                borderBottomWidth: 1.5,
-                                borderBottomColor: "green",
-                            }}
-                        >Name: {`${item.name}`}</Text>
+//     renderItem = ({ item }) => {
+//         let { navigation } = this.props;
+//         return (
+//             <TouchableOpacity
+//                 style={{ flex: 1, flexDirection: "row", marginBottom: 3 }}
+//                 // onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}
+//                 onPress={() => navigation.navigate("advance")}
+//             >
+//                 <View
+//                     style={{
+//                         flex: 1,
+//                         alignSelf: "stretch",
+//                         flexDirection: "row",
+//                         height: 35,
+//                         // borderBottomColor: "green",
+//                         // borderBottomWidth: 2,
+//                         margin: 10,
+//                     }}
+//                 >
+//                     <View style={{ flex: 1, alignSelf: "stretch" }}>
+//                         <Text
+//                             style={{
+//                                 color: "#006400",
+//                                 fontWeight: "bold",
+//                                 fontSize: 16,
+//                                 alignSelf: "stretch",
+//                                 marginBottom: 3,
+//                             }}
+//                         >
+//                            Date: {`${item.date}`}
+//                         </Text>
+//                         <Text
+//                             style={{
+//                                 color: "#228B22",
+//                                 borderBottomWidth: 1.5,
+//                                 borderBottomColor: "green",
+//                             }}
+//                         >Name: {`${item.name}`}</Text>
 
-                        <Text
-                            style={{
-                                color: "#006400",
-                                fontWeight: "bold",
-                                fontSize: 16,
-                                alignSelf: "stretch",
-                                marginBottom: 3,
-                            }}
-                        >Gender: {`${item.gende}`}</Text>
-                        <Text
-                            style={{
-                                color: "#228B22",
-                                borderBottomWidth: 1.5,
-                                borderBottomColor: "green",
-                            }}
-                        >Position: {`${item.position}`}</Text>
-                        <Text
-                            style={{
-                                color: "#006400",
-                                fontWeight: "bold",
-                                fontSize: 16,
-                                alignSelf: "stretch",
-                                marginBottom: 3,
-                            }}
-                        >
-                        Status:    {`${item.status}`}
-                        </Text>
-                        <Text
-                            style={{
-                                color: "#228B22",
-                                borderBottomWidth: 1.5,
-                                borderBottomColor: "green",
-                            }}
-                        >Amount: {`${item.advancedamnt}`}</Text>
+//                         <Text
+//                             style={{
+//                                 color: "#006400",
+//                                 fontWeight: "bold",
+//                                 fontSize: 16,
+//                                 alignSelf: "stretch",
+//                                 marginBottom: 3,
+//                             }}
+//                         >Gender: {`${item.gende}`}</Text>
+//                         <Text
+//                             style={{
+//                                 color: "#228B22",
+//                                 borderBottomWidth: 1.5,
+//                                 borderBottomColor: "green",
+//                             }}
+//                         >Position: {`${item.position}`}</Text>
+//                         <Text
+//                             style={{
+//                                 color: "#006400",
+//                                 fontWeight: "bold",
+//                                 fontSize: 16,
+//                                 alignSelf: "stretch",
+//                                 marginBottom: 3,
+//                             }}
+//                         >
+//                         Status:    {`${item.status}`}
+//                         </Text>
+//                         <Text
+//                             style={{
+//                                 color: "#228B22",
+//                                 borderBottomWidth: 1.5,
+//                                 borderBottomColor: "green",
+//                             }}
+//                         >Amount: {`${item.advancedamnt}`}</Text>
 
-                        <Text
-                            style={{
-                                color: "#006400",
-                                fontWeight: "bold",
-                                fontSize: 16,
-                                alignSelf: "stretch",
-                                marginBottom: 3,
-                            }}
-                        >Description: {`${item.description}`}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
+//                         <Text
+//                             style={{
+//                                 color: "#006400",
+//                                 fontWeight: "bold",
+//                                 fontSize: 16,
+//                                 alignSelf: "stretch",
+//                                 marginBottom: 3,
+//                             }}
+//                         >Description: {`${item.description}`}</Text>
+//                     </View>
+//                 </View>
+//             </TouchableOpacity>
+//         );
     };
 
     // renderSeparator = () => {

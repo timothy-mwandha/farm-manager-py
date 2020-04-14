@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "expo": "~36.0.0",
+    "formik": "^2.1.4",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "navigation": "^5.2.0",
@@ -39,7 +40,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "tcomb-form-native": "^0.6.20",
-    "watchman": "^1.0.0"
+    "watchman": "^1.0.0",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

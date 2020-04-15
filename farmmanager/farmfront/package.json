@@ -1,15 +1,14 @@
 {
+  "main": "node_modules/expo/AppEntry.js",
   "name": "farm-manager-py",
   "version": "1.0.0",
   "description": "A farm management app for Tele farmers",
   "scripts": {
-    "start-ios": "PLATFORM=ios webpack-dev-server",
-    "start-android": "PLATFORM=android webpack-dev-server",
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
     "web": "expo start --web",
-    "postinstall": "jetify"
+    "eject": "expo eject"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
@@ -28,6 +27,7 @@
     "cookie-parser": "^1.4.4",
     "core-js": "^3.6.4",
     "expo": "~36.0.0",
+    "expo-cli": "^3.18.0",
     "expo-image-picker": "~8.0.1",
     "expo-sqlite": "^8.0.0",
     "express": "^4.17.1",
@@ -73,8 +73,7 @@
     "tcomb-form-native": "^0.6.20",
     "thunk": "0.0.1",
     "url-loader": "^0.5.7",
-    "watchman": "^1.0.0",
-    "webpack": "^1.13.2"
+    "watchman": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

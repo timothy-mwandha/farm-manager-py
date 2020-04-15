@@ -32,18 +32,16 @@ import ExpenditureLand from "./src/components/ExpenditureLand";
 import PayrollLand from "./src/components/PayrollLand";
 import RequisitionLand from "./src/components/RequisitionLand";
 import AdvanceLand from "./src/components/AdvanceLand";
+import AdvanceDetails from "./src/components/AdvanceDetails";
 import ToolsLand from "./src/components/ToolsLand";
 import HarvestLand from "./src/components/HarvestLand";
 import ConsumableLand from "./src/components/ConsumableLand";
 import Users from "./src/components/Users";
+
 // import UsersView from "./src/components/UsersView";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
-
-// import configureStore from "./src/store/configureStore";
-
-// const store = configureStore();
 
 export default class App extends Component {
   render() {
@@ -71,6 +69,7 @@ export default class App extends Component {
             <Stack.Screen name="requisitionForm" component={RequisitionForm} />
             <Stack.Screen name="advance" component={Advance} />
             <Stack.Screen name="advanceLand" component={AdvanceLand} />
+            <Stack.Screen name="AdvanceDetails" component={AdvanceDetails} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

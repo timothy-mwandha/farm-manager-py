@@ -1,13 +1,13 @@
-import { FETCH_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "./types";
+import { GET_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "./types";
 
-//FETCH USERS
+//GET USERS
 
 export const fetchUsers = () => dispatch => {
   fetch("http://127.0.0.1:8000/api/user/")
     .then(res => res.json())
     .then(users =>
       dispatch({
-        type: FETCH_USERS,
+        type: GET_USERS,
         payload: users
         // users:users//you could also call the payload as users
       })

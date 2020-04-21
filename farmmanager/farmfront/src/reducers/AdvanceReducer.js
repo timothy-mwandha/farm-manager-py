@@ -41,7 +41,7 @@
 //     }
 // };
 
-import { GET_ADVANCE, DELETE_ADVANCE } from "../actions/types";
+import { GET_ADVANCE, DELETE_ADVANCE, DETAIL_ADVANCE } from "../actions/types";
 
 const initialState = {
     items: [],
@@ -59,7 +59,15 @@ export default function (state = initialState, action) {
         case DELETE_ADVANCE:
             return {
                 ...state,
-                items: state.items.filter(items => items.id !== action.payload),
+                items: state.items.filter(
+                    (items) => items.id !== action.payload
+                ),
+            };
+
+        case DETAIL_ADVANCE:
+            return {
+                ...state,
+                items: action.payload,
             };
 
         default:

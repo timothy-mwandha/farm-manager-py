@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { GET_ADVANCE, DELETE_ADVANCE } from "./types";
+import { GET_ADVANCE, DELETE_ADVANCE, DETAIL_ADVANCE } from "./types";
 
 export const getAdvances = () => (dispatch) => {
     axios.get("http://localhost:8000/api/advance/").then((res) =>
         // .then((advances) =>
         dispatch({
             type: GET_ADVANCE,
-            payload: advances,
+            payload: res.data,
         })
     );
 };
@@ -18,6 +18,17 @@ export const deleteAdvance = (id) => (dispatch) => {
         dispatch({
             type: DELETE_ADVANCE,
             payload: id,
+        });
+    });
+};
+
+export const detailAdvance = () => (dispatch) => {
+    axios.get(`http://localhost:8000/api/advance/`, {params:{advances:advances.id}})
+    .then((res) => {
+        // .then((advances) =>
+        dispatch({
+            type: DETAIL_ADVANCE,
+            payload: res.data,
         });
     });
 };

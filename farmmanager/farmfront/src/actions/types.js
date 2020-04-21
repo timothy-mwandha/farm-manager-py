@@ -1,2 +1,3 @@
 export const GET_ADVANCE = "GET_ADVANCE";
 export const DELETE_ADVANCE = "DELETE_ADVANCE";
+export const DETAIL_ADVANCE = "DETAIL_ADVANCE";

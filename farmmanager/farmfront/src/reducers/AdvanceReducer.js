@@ -67,8 +67,12 @@ export default function (state = initialState, action) {
         case DETAIL_ADVANCE:
             return {
                 ...state,
-                items: action.payload,
-            };
+                item: action.payload
+              
+                // state.items.filter(
+                // (items) => items.id == action.payload,
+                // );
+                };
 
         default:
             return state;

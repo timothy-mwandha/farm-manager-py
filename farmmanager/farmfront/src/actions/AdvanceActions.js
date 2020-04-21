@@ -22,8 +22,8 @@ export const deleteAdvance = (id) => (dispatch) => {
     });
 };
 
-export const detailAdvance = () => (dispatch) => {
-    axios.get(`http://localhost:8000/api/advance/`, {params:{advances:advances.id}})
+export const detailAdvance = (id) => (dispatch) => {
+    axios.get(`http://localhost:8000/api/advance/${id}`)
     .then((res) => {
         // .then((advances) =>
         dispatch({

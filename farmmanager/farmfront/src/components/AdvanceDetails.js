@@ -405,7 +405,7 @@ class AdvanceDetails extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    advances: state.advances.items,
+    advances: state.advances.item,
 });
 
 export default connect(mapStateToProps, { getAdvances, deleteAdvance, detailAdvance })(

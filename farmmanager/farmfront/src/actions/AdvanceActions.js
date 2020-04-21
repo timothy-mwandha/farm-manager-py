@@ -28,7 +28,8 @@ export const detailAdvance = (id) => (dispatch) => {
         // .then((advances) =>
         dispatch({
             type: DETAIL_ADVANCE,
-            payload: res.data,
+            payload: res.data
+            
         });
     });
 };

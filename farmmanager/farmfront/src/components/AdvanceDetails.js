@@ -17,12 +17,13 @@ import { connect } from "react-redux";
 
 class AdvanceDetails extends Component {
     componentDidMount() {
-        this.props.detailAdvance();
+        this.props.detailAdvance(id);
     }
 
     render() {
         let { navigation } = this.props;
-            <View key={advance.id}>
+        const {advance} = this.props
+       const item = (<View key={advance.id}>
                 <TouchableOpacity
                     // onPress={() => {
                     //     navigation.navigate("advanceDetails");
@@ -54,12 +55,12 @@ class AdvanceDetails extends Component {
                 >
                     <Text>Delete</Text>
                 </TouchableOpacity>
-            </View>
+            </View>)
         return (
             <ScrollView>
                 <View>
                     <Text> Advance Summary </Text>
-                    {advanceItems}
+                    {item}
                 </View>
             </ScrollView>
         );

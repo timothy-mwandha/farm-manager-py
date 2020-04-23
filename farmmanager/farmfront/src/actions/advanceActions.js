@@ -1,9 +1,9 @@
 import axios from "axios";
 import {
   GET_ADVANCES,
-  GET_ADVANCE,
-  ADD_ADVANCE,
+  DETAIL_ADVANCE,
   DELETE_ADVANCE,
+  ADD_ADVANCE,
   UPDATE_ADVANCE
 } from "./types";
 
@@ -13,6 +13,7 @@ export const getAdvances = () => dispatch => {
   axios
     .get("http://localhost:8000/api/advance/")
     .then(res => {
+      // console.log(res.data);
       dispatch({
         type: GET_ADVANCES,
         payload: res.data
@@ -20,58 +21,61 @@ export const getAdvances = () => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
-// FETCH SINGLE ADVANCE RECORD
-
-export const getAdvance = id => dispatch => {
+// GET ONE ADVANCE
+export const detailAdvance = id => dispatch => {
   axios
     .get(`http://localhost:8000/api/advance/${id}/`)
     .then(res => {
+      // console.log(res.data);
+      // .then((advances) =>
       dispatch({
-        type: GET_ADVANCE,
-        payload: id
+        type: DETAIL_ADVANCE,
+        payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log("Axios not able to fetch single advance", err));
 };
-
-//ADD_ADVANCE
-
-// export const addAdvance = advanceData => dispatch => {
-//   console.log("add advance");
-//   fetch("http://127.0.0.1:8000/api/advance/", {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(advanceData)
-//   })
-//     .then(res => res.json())
-//     .then(
-//       advance =>
-//         dispatch({
-//           type: ADD_ADVANCE,
-//           payload: advance
-//         })
-//       // alert("Advance added");
-//       // Alert.alert(responseJson);
-//       // this.props.navigation.navigate("advanceLand");
-//     );
-//   //   .catch(error => {
-//   //     console.error(error);
-//   //   });
-// };
 
 //DELETE ADVANCE
 export const deleteAdvance = id => dispatch => {
-  axios.delete(`http://localhost:8000/api/advance/${id}/`).then(res => {
-    // .then((advances) =>
-    dispatch({
-      type: DELETE_ADVANCE,
-      payload: id
-    });
-  });
+  axios
+    .delete(`http://localhost:8000/api/advance/${id}/`)
+    .then(res => {
+      // console.log(res.id);
+      dispatch({
+        type: DELETE_ADVANCE,
+        payload: id
+      });
+    })
+    .catch(err => console.log("Axios not able to delete advance", err));
 };
 
-//UPDATE ADVANCE
+// //ADD_ADVANCE
+
+// // export const addAdvance = advanceData => dispatch => {
+// //   console.log("add advance");
+// //   fetch("http://127.0.0.1:8000/api/advance/", {
+// //     method: "POST",
+// //     headers: {
+// //       Accept: "application/json",
+// //       "Content-Type": "application/json"
+// //     },
+// //     body: JSON.stringify(advanceData)
+// //   })
+// //     .then(res => res.json())
+// //     .then(
+// //       advance =>
+// //         dispatch({
+// //           type: ADD_ADVANCE,
+// //           payload: advance
+// //         })
+// //       // alert("Advance added");
+// //       // Alert.alert(responseJson);
+// //       // this.props.navigation.navigate("advanceLand");
+// //     );
+// //   //   .catch(error => {
+// //   //     console.error(error);
+// //   //   });
+// // };
+
+// //UPDATE ADVANCE

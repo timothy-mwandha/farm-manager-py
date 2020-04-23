@@ -1,17 +1,31 @@
+import axios from "axios";
 import { GET_USERS, ADD_USER, DELETE_USER, UPDATE_USER } from "./types";
 
 //GET USERS
 
+// export const fetchUsers = () => dispatch => {
+//   fetch("http://127.0.0.1:8000/api/user/")
+//     .then(res => res.json())
+//     .then(users =>
+//       dispatch({
+//         type: GET_USERS,
+//         payload: users
+//         // users:users//you could also call the payload as users
+//       })
+//     );
+// };
+
 export const fetchUsers = () => dispatch => {
-  fetch("http://127.0.0.1:8000/api/user/")
-    .then(res => res.json())
-    .then(users =>
+  axios
+    .get("http://localhost:8000/api/user/")
+    .then(res => {
+      console.log(res.data);
       dispatch({
         type: GET_USERS,
-        payload: users
-        // users:users//you could also call the payload as users
-      })
-    );
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 //ADD_USER

@@ -52,7 +52,7 @@ const formStyles = {
   },
   controlLabel: {
     normal: {
-      color: "#650205",
+      color: "#006432",
       fontSize: 20
     },
 
@@ -86,6 +86,10 @@ const options = {
         defaultValueText: "Select",
         format: date => moment(date).format("YYYY-DD-MM")
       }
+      // config: {
+      //   defaultValueText: "Select",
+      //   format: strDate => utils.convertDateToString(strDate, "YYYY-MM-DD")
+      // }
     },
     name: {
       autoFocus: true,
@@ -220,9 +224,10 @@ const styles = StyleSheet.create({
     padding: 20
   },
   title: {
-    fontSize: 35,
+    fontSize: 25,
+    fontWeight: "bold",
     marginTop: 5,
-    color: "#650205",
+    color:"#006432",
     textAlign: "center",
     marginBottom: 25
   },

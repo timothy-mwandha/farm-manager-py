@@ -17,11 +17,14 @@ import { connect } from "react-redux";
 
 class AdvanceDetails extends Component {
     componentDidMount() {
+                const id = this.props.route.params.itemId
+        console.log('ayooo----------------------------------', id)
+
         this.props.detailAdvance(id);
     }
 
     render() {
-        let { navigation } = this.props;
+        const { navigation } = this.props;
         const {advance} = this.props
        const item = (<View key={advance.id}>
                 <TouchableOpacity
@@ -30,17 +33,18 @@ class AdvanceDetails extends Component {
                     //     // this.props.deleteAdvance.bind(this, advances.id);
                     // }}
                 >
-                    <Text>Date : {advance.date}</Text>
-                     <Text>Name : {advance.name}</Text>
-                     <Text>Gender : {advance.gender}</Text>
-                     <Text>Position: {advance.position}</Text>
-                     <Text>Status: {advance.status}</Text>
-                     <Text>Amount: {advance.advancedamnt}</Text>
-                    <Text>Description: {advance.description}</Text>
+                    <Text>Date :              {advance.date}</Text>
+                     <Text>Name :            {advance.name}</Text>
+                     <Text>Gender :          {advance.gender}</Text>
+                     <Text>Position:          {advance.position}</Text>
+                     <Text>Status:             {advance.status}</Text>
+                     <Text>Amount:          {advance.advancedamnt}</Text>
+                    <Text>Description:    {advance.description}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={this.props.deleteAdvance.bind(this, advance.id)}
+                    onPress={() =>{this.props.deleteAdvance.bind(this, advance.id);
+                            navigation.navigate("advanceDetails");}}
                     style={{
                         flex: 1,
                         alignSelf: "stretch",

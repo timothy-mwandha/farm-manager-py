@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import { View, Text, Button, TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -31,6 +31,12 @@ export default function LandReportInventory({ navigation }) {
               fontSize: 30
             }}
           >
+          <Image style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }} source={require("../images/consumable_icon.png")} />
             <Text>CONSUMABLE</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -45,6 +51,12 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
+          <Image style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }} source={require("../images/agri_tools.jpg")} />
             <Text>TOOLS</Text>
           </TouchableOpacity>
         </View>
@@ -63,6 +75,12 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
+          <Image style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }} source={require("../images/coffee-harvest.jpg")} />
             <Text>HARVEST</Text>
           </TouchableOpacity>
           <TouchableOpacity

@@ -9,11 +9,7 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
-import {
-  getAdvances,
-  deleteAdvance
-  // detailAdvance
-} from "../actions/advanceActions";
+import { getAdvances, deleteAdvance } from "../actions/advanceActions";
 import { connect } from "react-redux";
 
 class AdvanceLand extends Component {
@@ -54,7 +50,7 @@ class AdvanceLand extends Component {
           {advanceItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
-            onPress={() => navigation.navigate("advance")}
+            onPress={() => navigation.navigate("Advance")}
           >
             <Text style={styles.TouchableOpacityAdd}>+</Text>
           </TouchableOpacity>

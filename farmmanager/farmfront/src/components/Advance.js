@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Linking,
-  KeyboardAvoidingView,
+  SafeAreaView,
   TouchableOpacity
 } from "react-native";
 import moment from "moment";
@@ -39,7 +39,7 @@ const AdvanceForm = t.struct({
   date: t.Date,
   name: name,
   gender: gender,
-  position: t.maybe(t.String),
+  position: t.String,
   status: Status,
   advancedamnt: t.Number,
   description: t.maybe(t.String)
@@ -189,7 +189,7 @@ export default class Advance extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Advance Form</Text>
@@ -212,7 +212,7 @@ export default class Advance extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
@@ -227,12 +227,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     marginTop: 5,
-    color:"#006432",
+    color: "#006432",
     textAlign: "center",
     marginBottom: 25
   },
   button: {
-    marginBottom: 15
+    marginTop: 20,
+    marginBottom: 50
   }
 });
 

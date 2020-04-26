@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   Button,
-  KeyboardAvoidingView,
+  SafeAreaView,
   Linking,
   Image
 } from "react-native";
@@ -65,7 +65,7 @@ export default class PasswordRecovery extends Component {
   };
   render() {
     return (
-      <KeyboardAvoidingView
+      <SafeAreaView
         style={{
           flex: 1,
           backgroundColor: "#fff",
@@ -93,7 +93,7 @@ export default class PasswordRecovery extends Component {
             ></Button>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

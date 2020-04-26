@@ -6,7 +6,7 @@ import {
   Text,
   Button,
   Image,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 var t = require("tcomb-form-native");
@@ -50,7 +50,7 @@ const User = t.struct({
   TakenBy: t.String, //string
   ToolCondition: ToolCondition, //drop down select t.enums
   DateOfPurchase: t.Date,
-  SerialNumber: t.String //string
+  SerialNumber: t.maybe(t.String) //string
 });
 
 const formStyles = {
@@ -174,7 +174,7 @@ export default class ToolBinCard extends Component {
   render() {
     let { image } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Tool Bin Card</Text>
@@ -195,7 +195,7 @@ export default class ToolBinCard extends Component {
             </View>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

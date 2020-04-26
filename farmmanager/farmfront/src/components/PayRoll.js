@@ -6,7 +6,7 @@ import {
   Text,
   Button,
   Linking,
-  KeyboardAvoidingView,
+  SafeAreaView,
   TouchableOpacity
 } from "react-native";
 import moment from "moment";
@@ -68,7 +68,7 @@ const Payroll = t.struct({
   Date: t.Date,
   Name: Name,
   Gender: Gender,
-  Position: t.maybe(t.String),
+  Position: t.String,
   Status: Status,
   PaymentMode: PaymentMode,
   SalaryAmount: t.Number,
@@ -89,7 +89,7 @@ const formStyles = {
   },
   controlLabel: {
     normal: {
-      color: "#650205",
+      color: "#006432",
       fontSize: 20
     },
 
@@ -213,6 +213,41 @@ export default class PayRoll extends Component {
     super();
     this.state = {};
   }
+
+  InsertDataToServer = async () => {
+    fetch("http://127.0.0.1:8000/api/payroll/",{
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        date: this.Date,
+        name: this.Name,
+        gender: this.Gender,
+        position: this.Position,
+        status: this.Status,
+        paymod: this.PaymentMode,
+        salaryamnt: this.SalaryAmount,
+        paye: this.PAYE,
+        nssf1: this.NSSF1,
+        nssf2: this.NSSF2,
+        tax: this.Tax,
+        lst: this.LST,
+        advance: this.Advance,
+        netpay: this.NetPay,
+        total: this.Total
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   onChange = value => {
     this.setState({ value });
   };
@@ -222,19 +257,34 @@ export default class PayRoll extends Component {
     this.setState({ value: null });
   };
 
-  handleSubmit = event => {
+  handleSubmit = () => {
     const value = this._form.getValue();
-    if (value) {
-      console.log(value);
-      // clear all fields after submit
+    console.log(value);
+    if (value != null) {
+      (this.Date = value.Date),
+        (this.Name = value.Name),
+        (this.Gender = value.Gender),
+        (this.Position = value.Position),
+        (this.Status = value.Status),
+        (this.PaymentMode = value.PaymentMode),
+        (this.SalaryAmount = value.SalaryAmount),
+        (this.PAYE = value.PAYE),
+        (this.NSSF1 = value.NSSF1),
+        (this.NSSF2 = value.NSSF2),
+        (this.Tax = value.Tax),
+        (this.LST = value.LST),
+        (this.Advance = value.Advance),
+        (this.NetPay = value.NetPay),
+        (this.Total = value.Total),
+        this.InsertDataToServer();
       this.clearForm();
       alert("Payroll captured!");
-    }
+    } else console.log("No data entered");
   };
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Payroll Form</Text>
@@ -256,7 +306,7 @@ export default class PayRoll extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
@@ -268,13 +318,15 @@ const styles = StyleSheet.create({
     padding: 20
   },
   title: {
-    fontSize: 35,
+    fontSize: 25,
+    fontWeight: "bold",
     marginTop: 5,
-    color: "#650205",
+    color: "#006432",
     textAlign: "center",
     marginBottom: 25
   },
   button: {
-    marginBottom: 15
+    marginTop: 20,
+    marginBottom: 50
   }
 });

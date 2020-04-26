@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  GET_ADVANCES,
+  GET_ADVANCE,
   DETAIL_ADVANCE,
   DELETE_ADVANCE,
   ADD_ADVANCE,
@@ -15,7 +15,7 @@ export const getAdvances = () => dispatch => {
     .then(res => {
       // console.log(res.data);
       dispatch({
-        type: GET_ADVANCES,
+        type: GET_ADVANCE,
         payload: res.data
       });
     })
@@ -52,30 +52,30 @@ export const deleteAdvance = id => dispatch => {
 
 // //ADD_ADVANCE
 
-// // export const addAdvance = advanceData => dispatch => {
-// //   console.log("add advance");
-// //   fetch("http://127.0.0.1:8000/api/advance/", {
-// //     method: "POST",
-// //     headers: {
-// //       Accept: "application/json",
-// //       "Content-Type": "application/json"
-// //     },
-// //     body: JSON.stringify(advanceData)
-// //   })
-// //     .then(res => res.json())
-// //     .then(
-// //       advance =>
-// //         dispatch({
-// //           type: ADD_ADVANCE,
-// //           payload: advance
-// //         })
-// //       // alert("Advance added");
-// //       // Alert.alert(responseJson);
-// //       // this.props.navigation.navigate("advanceLand");
-// //     );
-// //   //   .catch(error => {
-// //   //     console.error(error);
-// //   //   });
-// // };
+export const addAdvance = advanceData => dispatch => {
+  console.log("add advance");
+  fetch("http://127.0.0.1:8000/api/advance/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(advanceData)
+  })
+    .then(res => res.json())
+    .then(
+      advance =>
+        dispatch({
+          type: ADD_ADVANCE,
+          payload: advance
+        })
+      // alert("Advance added");
+      // Alert.alert(responseJson);
+      // this.props.navigation.navigate("advanceLand");
+    )
+    .catch(error => {
+      console.error("Failed to add advance", error);
+    });
+};
 
 // //UPDATE ADVANCE

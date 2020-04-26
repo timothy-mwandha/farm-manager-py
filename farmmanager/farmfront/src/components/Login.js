@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   Button,
-  KeyboardAvoidingView,
+  SafeAreaView,
   TouchableOpacity,
   Linking
 } from "react-native";
@@ -68,7 +68,7 @@ class Login extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
+      <SafeAreaView
         style={{
           flex: 1,
           backgroundColor: "#fff",
@@ -120,7 +120,7 @@ class Login extends Component {
             </View>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

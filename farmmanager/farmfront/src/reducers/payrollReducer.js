@@ -1,9 +1,9 @@
 import {
-  GET_ADVANCE,
-  DETAIL_ADVANCE,
-  ADD_ADVANCE,
-  DELETE_ADVANCE,
-  UPDATE_ADVANCE
+  GET_PAYROLL,
+  DETAIL_PAYROLL,
+  DELETE_PAYROLL,
+  ADD_PAYROLL,
+  UPDATE_PAYROLL
 } from "../actions/types";
 
 const initialState = {
@@ -13,42 +13,42 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ADVANCE:
+    case GET_PAYROLL:
       return {
         ...state,
         items: action.payload
       };
 
-    case DELETE_ADVANCE:
+    case DELETE_PAYROLL:
       return {
         ...state,
         items: state.items.filter(items => items.id !== action.payload)
       };
 
-    case DETAIL_ADVANCE:
+    case DETAIL_PAYROLL:
       return {
         ...state,
         item: action.payload
       };
-    case ADD_ADVANCE:
+    case ADD_PAYROLL:
       return {
         ...state,
         item: action.payload
       };
 
-    // case UPDATE_ADVANCE:{
-    //             let { advance } = action.data;
+    // case UPDATE_PAYROLL:{
+    //             let { payroll } = action.data;
 
     //             //clone the current state
-    //             let clone = JSON.parse(JSON.stringify(state.advances));
+    //             let clone = JSON.parse(JSON.stringify(state.payrolls));
 
     //             //check if bookmark already exist
-    //             const index = clone.findIndex((obj) => obj.id === advance.id);
+    //             const index = clone.findIndex((obj) => obj.id === payroll.id);
 
-    //             //if the advance is in the array, update the advance
-    //             if (index !== -1) clone[index] = advance;
+    //             //if the payroll is in the array, update the payroll
+    //             if (index !== -1) clone[index] = payroll;
 
-    //             return {...state, advances: clone};
+    //             return {...state, payrolls: clone};
     //         };
 
     default:

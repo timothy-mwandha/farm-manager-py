@@ -6,7 +6,7 @@ import {
   Text,
   Button,
   Linking,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 import moment from "moment";
 
@@ -45,10 +45,10 @@ const Expenditure = t.struct({
   Tax: t.maybe(t.Number),
   Description: t.maybe(t.String),
   Total: t.Number,
-  InvoiceNumber: t.Number,
+  InvoiceNumber: t.maybe(t.Number),
   AmountPaid: t.Number,
   PaymentMode: PaymentMode,
-  ReceiptNumber: t.Number,
+  ReceiptNumber: t.maybe(t.Number),
   BalanceDue: t.maybe(t.Number),
   BalanceDueDate: t.maybe(t.Date)
 });
@@ -56,15 +56,12 @@ const Expenditure = t.struct({
 const formStyles = {
   ...Form.stylesheet,
   formGroup: {
-    normal: {
-      marginBottom: 5
-    }
+    normal: {}
   },
   controlLabel: {
     normal: {
-      color: "#650205",
-      fontSize: 20,
-      marginBottom: 5
+      color: "#006432",
+      fontSize: 20
     },
 
     error: {
@@ -141,9 +138,46 @@ const options = {
 export default class ExpenditureForm extends Component {
   constructor() {
     super();
-
     this.state = {};
   }
+
+  InsertDataToServer = async () => {
+    fetch("http://127.0.0.1:8000/api/expenditure/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        date: this.Date,
+        suppl: this.Supplier,
+        phone: this.Phone,
+        product: this.Product,
+        typeofex: this.TypeOfExpense,
+        unit: this.Unit,
+        unitprice: this.UnitPrice,
+        quantity: this.Quantity,
+        subtotal: this.SubTotal,
+        tax: this.Tax,
+        description: this.Description,
+        total: this.Total,
+        invnumber: this.InvoiceNumber,
+        amountpaid: this.AmountPaid,
+        paymode: this.PaymentMode,
+        receiptnum: this.ReceiptNumber,
+        baldue: this.BalanceDue,
+        balduedate: this.BalanceDueDate
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   onChange = value => {
     this.setState({ value });
   };
@@ -153,20 +187,37 @@ export default class ExpenditureForm extends Component {
     this.setState({ value: null });
   };
 
-  handleSubmit = event => {
+  handleSubmit = () => {
     const value = this._form.getValue();
-    if (value) {
-      console.log(value);
-      // clear all fields after submit
+    console.log(value);
+    if (value != null) {
+      (this.Date = value.Date),
+        (this.Supplier = value.Supplier),
+        (this.Phone = value.Phone),
+        (this.Product = value.Product),
+        (this.TypeOfExpense = value.TypeOfExpense),
+        (this.Unit = value.Unit),
+        (this.UnitPrice = value.UnitPrice),
+        (this.Quantity = value.Quantity),
+        (this.SubTotal = value.SubTotal),
+        (this.Tax = value.Tax),
+        (this.Description = value.Description),
+        (this.Total = value.Total),
+        (this.InvoiceNumber = value.InvoiceNumber),
+        (this.AmountPaid = value.AmountPaid),
+        (this.PaymentMode = value.PaymentMode),
+        (this.ReceiptNumber = value.ReceiptNumber),
+        (this.BalanceDue = value.BalanceDue),
+        (this.BalanceDueDate = value.BalanceDueDate),
+        this.InsertDataToServer();
       this.clearForm();
-      alert("Expenditure captured!");
-      console.log(value.Quantity);
-    }
+      alert("Income captured!");
+    } else console.log("No data entered");
   };
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Expenditure</Text>
@@ -186,7 +237,7 @@ export default class ExpenditureForm extends Component {
             </View>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }
@@ -194,29 +245,16 @@ export default class ExpenditureForm extends Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    marginTop: 24,
+    marginTop: 15,
     padding: 20
   },
   title: {
-    fontSize: 35,
+    fontSize: 25,
+    fontWeight: "bold",
     marginTop: 5,
-    color: "#650205",
+    color: "#006432",
     textAlign: "center",
     marginBottom: 25
-  },
-  question: {
-    color: "#650205",
-    textAlign: "center",
-    marginTop: 18,
-    fontSize: 18
-  },
-  link: {
-    fontWeight: "bold",
-    color: "#650205",
-    textAlign: "center",
-    marginTop: 8,
-    fontSize: 20,
-    fontWeight: "bold"
   },
   button: {
     marginTop: 20,

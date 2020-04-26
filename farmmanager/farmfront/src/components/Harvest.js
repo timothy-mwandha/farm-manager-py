@@ -6,18 +6,18 @@ import {
   Button,
   Text,
   TouchableHighlight,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
 
-const User = t.struct({
+const Harvest = t.struct({
   HarvestDate: t.Date,
   Quantity: t.Number,
   Units: t.Number,
   Source: t.String,
-  Description: t.String,
+  Description: t.maybe(t.String),
   Store: t.String
 });
 
@@ -80,7 +80,7 @@ export default class Consumable extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
+      <SafeAreaView
         style={styles.container}
         behavior="padding"
         enabled
@@ -95,7 +95,11 @@ export default class Consumable extends Component {
                 <Text style={styles.text}>New Harvest</Text>
               </View>
             </View>
-            <Form ref={c => (this._form = c)} type={User} options={options} />
+            <Form
+              ref={c => (this._form = c)}
+              type={Harvest}
+              options={options}
+            />
             <TouchableHighlight>
               <View style={styles.button}>
                 <Button
@@ -107,7 +111,7 @@ export default class Consumable extends Component {
             </TouchableHighlight>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

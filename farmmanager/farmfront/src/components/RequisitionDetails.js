@@ -10,25 +10,22 @@ import {
   Image,
   StyleSheet
 } from "react-native";
-import {
-  deleteAdvance,
-  detailAdvance
-} from "../actions/advanceActions";
+import { deleteRequisition, detailRequisition } from "../actions/requisitionActions";
 import { connect } from "react-redux";
 
-class AdvanceDetails extends Component {
+class RequisitionDetails extends Component {
   componentDidMount() {
     const id = this.props.route.params.itemId;
     console.log("ayooo----------------------------------", id);
 
-    this.props.detailAdvance(id);
+    this.props.detailRequisition(id);
   }
 
   render() {
     const { navigation } = this.props;
-    const { advance } = this.props;
+    const { requisition } = this.props;
     const item = (
-      <View style={styles.container} key={advance.id}>
+      <View style={styles.container} key={requisition.id}>
         <View>
           <View
             style={{
@@ -48,7 +45,9 @@ class AdvanceDetails extends Component {
               }}
               source={require("../images/worker.jpg")}
             />
-            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>Date:</Text>
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Date:
+            </Text>
             <Text
               style={{
                 flex: 1,
@@ -57,126 +56,8 @@ class AdvanceDetails extends Component {
                 fontWeight: "bold",
                 fontSize: 16
               }}
-            >{`${advance.date}`}</Text>
+            >{`${requisition.date}`}</Text>
           </View>
-          <View
-            style={{
-              flex: 1,
-              alignSelf: "stretch",
-              flexDirection: "row",
-              height: 35,
-              margin: 10
-            }}
-          >
-            <Image
-              style={{
-                alignSelf: "center",
-                width: 50,
-                height: 50,
-                marginRight: 5
-              }}
-              source={require("../images/worker.jpg")}
-            />
-            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>Name:</Text>
-            <Text
-              style={{
-                flex: 1,
-                alignSelf: "stretch",
-                color: "#006432",
-                fontWeight: "bold",
-                fontSize: 16
-              }}
-            >{`${advance.name}`}</Text>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              alignSelf: "stretch",
-              flexDirection: "row",
-              height: 35,
-              margin: 10
-            }}
-          >
-            <Image
-              style={{
-                alignSelf: "center",
-                width: 50,
-                height: 50,
-                marginRight: 5
-              }}
-              source={require("../images/worker.jpg")}
-            />
-            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>Gender:</Text>
-            <Text
-              style={{
-                flex: 1,
-                alignSelf: "stretch",
-                color: "#006432",
-                fontWeight: "bold",
-                fontSize: 16
-              }}
-            >{`${advance.gender}`}</Text>
-          </View>
-
-          <View
-            style={{
-              flex: 1,
-              alignSelf: "stretch",
-              flexDirection: "row",
-              height: 35,
-              margin: 10
-            }}
-          >
-            <Image
-              style={{
-                alignSelf: "center",
-                width: 50,
-                height: 50,
-                marginRight: 5
-              }}
-              source={require("../images/user.png")}
-            />
-            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}> Position:</Text>
-            <Text
-              style={{
-                flex: 1,
-                alignSelf: "stretch",
-                color: "#006432",
-                fontWeight: "bold",
-                fontSize: 16
-              }}
-            >{`${advance.position}`}</Text>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              alignSelf: "stretch",
-              flexDirection: "row",
-              height: 35,
-              margin: 10
-            }}
-          >
-            <Image
-              style={{
-                alignSelf: "center",
-                width: 50,
-                height: 50,
-                marginRight: 5
-              }}
-              source={require("../images/worker.jpg")}
-            />
-            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>Status:</Text>
-            <Text
-              style={{
-                flex: 1,
-                alignSelf: "stretch",
-                color: "#006432",
-                fontWeight: "bold",
-                fontSize: 16
-              }}
-            >{`${advance.status}`}</Text>
-          </View>
-
           <View
             style={{
               flex: 1,
@@ -196,16 +77,175 @@ class AdvanceDetails extends Component {
               source={require("../images/worker.jpg")}
             />
             <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
-              Advanced Amount:
+              Cost Type:
             </Text>
-            <Text style={{
+            <Text
+              style={{
                 flex: 1,
                 alignSelf: "stretch",
                 color: "#006432",
                 fontWeight: "bold",
                 fontSize: 16
-              }}>
-              Shs: {`${advance.advancedamnt}`}
+              }}
+            >{`${requisition.costtype}`}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+             Units:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >{`${requisition.units}`}</Text>
+          </View>
+
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+              // color: "#006432"
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/user.png")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Activity:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >{`${requisition.activity}`}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Quantity:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >{`${requisition.qty}`}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Unit Price:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >Shs: {`${requisition.unitprice}`}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Sub Total:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >
+              Shs: {`${requisition.subtotal}`}
             </Text>
           </View>
           <View
@@ -237,14 +277,109 @@ class AdvanceDetails extends Component {
                 fontWeight: "bold",
                 fontSize: 16
               }}
-            >{`${advance.description}`}</Text>
+            >{`${requisition.description}`}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Requested By:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >{`${requisition.requestby}`}</Text>
+          </View>
+
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Approved By:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >{`${requisition.approvby}`}</Text>
+          </View>
+
+          <View
+            style={{
+              flex: 1,
+              alignSelf: "stretch",
+              flexDirection: "row",
+              height: 35,
+              margin: 10
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 50,
+                height: 50,
+                marginRight: 5
+              }}
+              source={require("../images/worker.jpg")}
+            />
+            <Text style={{ flex: 1, alignSelf: "stretch", color: "#228B22" }}>
+              Total:
+            </Text>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "stretch",
+                color: "#006432",
+                fontWeight: "bold",
+                fontSize: 16
+              }}
+            >Shs: {`${requisition.total}`}</Text>
           </View>
         </View>
 
         <TouchableOpacity
           onPress={() => {
-            this.props.deleteAdvance.bind(this, advance.id);
-            navigation.navigate("advanceLand");
+            this.props.deleteRequisition.bind(this, requisition.id);
+            navigation.navigate("RequisitionLand");
           }}
           style={{
             flex: 1,
@@ -265,7 +400,7 @@ class AdvanceDetails extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={styles.heading}> Advance Details </Text>
+          <Text style={styles.heading}> Requisition Details </Text>
           {item}
         </View>
       </ScrollView>
@@ -274,13 +409,13 @@ class AdvanceDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-  advance: state.advances.item
+  requisition: state.requisitions.item
 });
 
 export default connect(mapStateToProps, {
-  deleteAdvance,
-  detailAdvance
-})(AdvanceDetails);
+  deleteRequisition,
+  detailRequisition
+})(RequisitionDetails);
 
 const styles = StyleSheet.create({
   container: {

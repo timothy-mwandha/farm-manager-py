@@ -7,7 +7,7 @@ import {
   Text,
   Button,
   Linking,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 
 var t = require("tcomb-form-native");
@@ -140,7 +140,7 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Sign Up</Text>
@@ -166,7 +166,7 @@ export default class SignUp extends Component {
             </Text>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

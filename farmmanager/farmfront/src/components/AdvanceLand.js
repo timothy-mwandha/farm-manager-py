@@ -66,6 +66,27 @@ class AdvanceLand extends Component {
                     <Text> Advance Summary </Text>
                     {advanceItems}
                 </View>
+                <View>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate("advance");
+                        }}
+                        style={{
+                            flex: 1,
+                            alignSelf: "stretch",
+                            flexDirection: "row",
+                            backgroundColor: "#cedcf2",
+                            height: 35,
+                            borderBottomColor: "#cedcf2",
+                            fontSize: 30,
+                            borderBottomWidth: 2,
+                            margin: 10,
+                            width: 150,
+                        }}
+                    >
+                        <Text>Add Advance</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         );
     }

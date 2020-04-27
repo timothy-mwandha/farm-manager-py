@@ -113,8 +113,8 @@ const RequisitionOptions = {
 };
 
 export default class RequisitionForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 InsertDataToServer = async () => {
@@ -197,7 +197,8 @@ InsertDataToServer = async () => {
           <View>
             <Text style={styles.title}>Requisition Form</Text>
             <Form
-              ref={request => (this.formRef = request)}
+              // ref={request => (this.formRef = request)}
+              ref={c => (this._form = c)}
               type={Requisition}
               value={this.state.value}
               onChange={this.onChange.bind(this)}

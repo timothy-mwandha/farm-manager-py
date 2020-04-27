@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
   Button,
-  Linking,
   SafeAreaView,
   TouchableOpacity
 } from "react-native";
@@ -14,29 +13,6 @@ import moment from "moment";
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
 
-// var _ = require("lodash");
-
-// const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
-
-// stylesheet.textbox.normal.borderWidth = 0;
-// stylesheet.textbox.error.borderWidth = 0;
-// stylesheet.textbox.normal.marginBottom = 0;
-// stylesheet.textbox.error.marginBottom = 0;
-
-// stylesheet.textboxView.normal.borderWidth = 0;
-// stylesheet.textboxView.error.borderWidth = 0;
-// stylesheet.textboxView.normal.borderRadius = 0;
-// stylesheet.textboxView.error.borderRadius = 0;
-// stylesheet.textboxView.normal.borderBottomWidth = 1;
-// stylesheet.textboxView.error.borderBottomWidth = 1;
-// stylesheet.textboxView.normal.marginBottom = 5;
-// stylesheet.textboxView.error.marginBottom = 5;
-// stylesheet.controlLabel.normal.color = "#650205";
-
-// const MobileMoneyNumber = t.refinement(t.Number, MobileMoneyNumber => {
-//   const reg = /^[0]?[0-9]\d{8}$/;
-//   return reg.test(MobileMoneyNumber);
-// });
 const Name = t.refinement(t.String, Name => {
   const regex = /^[a-zA-Z].*[\s\.]*$/g;
   return regex.test(Name);
@@ -64,7 +40,7 @@ var Tax = t.enums({
 });
 
 const Payroll = t.struct({
-  ...Form.PayRoll,
+  ...Form.Payroll,
   Date: t.Date,
   Name: Name,
   Gender: Gender,
@@ -105,11 +81,10 @@ const formStyles = {
 const options = {
   ...Form.options,
   fields: {
-    Date: {
+   Date: {
       label: "Date",
       mode: "date",
       error: "Please enter a correct date",
-      // stylesheet: stylesheet,
       returnKeyType: "next",
       config: {
         defaultValueText: "Select",
@@ -120,14 +95,11 @@ const options = {
       autoFocus: true,
       label: "Name",
       error: "Please enter a correct Name",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     Gender: {
       label: "Gender",
       error: "You must select gender",
-      // isCollapsed: true,
-      // stylesheet: stylesheet,
       returnKeyType: "next",
       config: {
         defaultValueText: "Select"
@@ -136,86 +108,74 @@ const options = {
     Position: {
       label: "Position",
       error: "Please enter the employee's position",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     Status: {
       label: "Status",
       error: "Please enter the status of the employee",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     PaymentMode: {
       label: "Payment Mode",
       error: "Please select a mode of payment",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     SalaryAmount: {
       label: "Salary Amount",
       error: "Please enter a correct Salary Amount",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     PAYE: {
       label: "PAYE",
       error: "PAYE is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     NSSF1: {
       label: "NSSF(5%)",
       error: "NSSF is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     NSSF2: {
       label: "NSSF(10%)",
       error: "NSSF is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     Tax: {
       label: "Tax",
       error: "Tax is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     LST: {
       label: "Local Service Tax",
       error: "LST is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     Advance: {
       label: "Salary Advance",
       error: "Advance missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     NetPay: {
       label: "Net Pay",
       error: "Net pay is missing",
-      // stylesheet: stylesheet,
       returnKeyType: "next"
     },
     Total: {
       label: "Total",
       error: "Total is missing"
-      // stylesheet: stylesheet
     }
   },
   stylesheet: formStyles
 };
 
-export default class PayRoll extends Component {
-  constructor() {
-    super();
+export default class Advance extends Component {
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
   InsertDataToServer = async () => {
-    fetch("http://127.0.0.1:8000/api/payroll/",{
+    fetch("http://127.0.0.1:8000/api/payroll/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -277,6 +237,7 @@ export default class PayRoll extends Component {
         (this.NetPay = value.NetPay),
         (this.Total = value.Total),
         this.InsertDataToServer();
+      // clear all fields after submit
       this.clearForm();
       alert("Payroll captured!");
     } else console.log("No data entered");
@@ -301,6 +262,7 @@ export default class PayRoll extends Component {
                   color="#0A802B"
                   title="SAVE"
                   onPress={this.handleSubmit}
+                  // onPress={() => navigation.navigate("Finance")}
                 />
               </View>
             </TouchableOpacity>
@@ -330,3 +292,4 @@ const styles = StyleSheet.create({
     marginBottom: 50
   }
 });
+

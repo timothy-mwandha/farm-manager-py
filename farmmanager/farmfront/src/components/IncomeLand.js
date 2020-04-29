@@ -26,7 +26,7 @@ class IncomeLand extends Component {
         <View style={styles.container}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("IncomeDetails", {
+              navigation.navigate("Sales Details", {
                 itemId: income.id
               });
             }}
@@ -49,11 +49,11 @@ class IncomeLand extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={styles.heading}> Income Summaries </Text>
+          <Text style={styles.heading}> Sales Summaries </Text>
           {incomeItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
-            onPress={() => navigation.navigate("IncomeForm")}
+            onPress={() => navigation.navigate("Sales Form")}
           >
             <Text style={styles.TouchableOpacityAdd}>+</Text>
           </TouchableOpacity>

@@ -229,7 +229,7 @@ export default class IncomeForm extends Component {
       <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
-            <Text style={styles.title}>Income</Text>
+            <Text style={styles.title}>Sales Form</Text>
             <Form
               ref={c => (this._form = c)}
               type={Income}

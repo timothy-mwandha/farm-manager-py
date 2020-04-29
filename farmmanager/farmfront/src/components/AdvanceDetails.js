@@ -244,7 +244,7 @@ class AdvanceDetails extends Component {
         <TouchableOpacity
           onPress={() => {
             this.props.deleteAdvance.bind(this, advance.id);
-            navigation.navigate("advanceLand");
+            // navigation.navigate("AdvanceLand");
           }}
           style={{
             flex: 1,

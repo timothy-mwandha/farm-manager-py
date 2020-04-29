@@ -39,7 +39,7 @@ export default function LandReportFinace({ navigation }) {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("IncomeLand")}
+            onPress={() => navigation.navigate("Sales Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#ecef57",
@@ -60,7 +60,7 @@ export default function LandReportFinace({ navigation }) {
             <Text>SALES</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("ExpenditureLand")}
+            onPress={() => navigation.navigate("Expenditure Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#abdd53",
@@ -84,7 +84,7 @@ export default function LandReportFinace({ navigation }) {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PayrollLand")}
+            onPress={() => navigation.navigate("Payroll Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#7cb407",
@@ -104,7 +104,7 @@ export default function LandReportFinace({ navigation }) {
             <Text>PAYROLL</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("RequisitionLand")}
+            onPress={() => navigation.navigate("Requisition Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#349e00",
@@ -131,7 +131,7 @@ export default function LandReportFinace({ navigation }) {
           style={{ flex: 1, flexDirection: "row" }}
         >
           <TouchableOpacity
-            onPress={() => navigation.navigate("AdvanceLand")}
+            onPress={() => navigation.navigate("Advance Summaries")}
             style={{
               flex: 1,
               // backgroundColor: "#606734",

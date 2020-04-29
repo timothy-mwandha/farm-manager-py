@@ -211,7 +211,7 @@ export default class ExpenditureForm extends Component {
         (this.BalanceDueDate = value.BalanceDueDate),
         this.InsertDataToServer();
       this.clearForm();
-      alert("Income captured!");
+      alert("Expenditure captured!");
     } else console.log("No data entered");
   };
 

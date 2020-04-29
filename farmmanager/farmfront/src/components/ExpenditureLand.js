@@ -10,8 +10,7 @@ import {
   StyleSheet
 } from "react-native";
 import {
-  getExpenditure,
-  deleteExpenditure
+  getExpenditure
 } from "../actions/expenditureActions";
 import { connect } from "react-redux";
 
@@ -58,7 +57,7 @@ class ExpenditureLand extends Component {
           {expenditureItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
-            onPress={() => navigation.navigate("ExpenditureForm")}
+            onPress={() => navigation.navigate("Expenditure Form")}
           >
             <Text style={styles.TouchableOpacityAdd}>+</Text>
           </TouchableOpacity>
@@ -71,7 +70,7 @@ const mapStateToProps = state => ({
   expenditures: state.expenditures.items
 });
 
-export default connect(mapStateToProps, { getExpenditure, deleteExpenditure })(
+export default connect(mapStateToProps, { getExpenditure })(
   ExpenditureLand
 );
 

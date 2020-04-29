@@ -26,7 +26,7 @@ class RequisitionLand extends Component {
         <View style={styles.container}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("requisitionDetails", {
+              navigation.navigate("Requisition Details", {
                 itemId: requisition.id
               });
             }}
@@ -53,7 +53,7 @@ class RequisitionLand extends Component {
           {requisitionItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
-            onPress={() => navigation.navigate("RequisitionForm")}
+            onPress={() => navigation.navigate("Requisition Form")}
           >
             <Text style={styles.TouchableOpacityAdd}>+</Text>
           </TouchableOpacity>

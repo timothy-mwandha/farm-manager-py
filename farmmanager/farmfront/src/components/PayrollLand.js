@@ -26,7 +26,7 @@ class PayrollLand extends Component {
         <View style={styles.container}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("PayrollDetails", {
+              navigation.navigate("Payroll Details", {
                 itemId: payroll.id
               });
             }}
@@ -53,7 +53,7 @@ class PayrollLand extends Component {
           {payrollItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}
-            onPress={() => navigation.navigate("Payroll")}
+            onPress={() => navigation.navigate("Payroll Form")}
           >
             <Text style={styles.TouchableOpacityAdd}>+</Text>
           </TouchableOpacity>

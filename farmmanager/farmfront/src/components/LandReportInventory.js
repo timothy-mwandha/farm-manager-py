@@ -19,7 +19,7 @@ export default function LandReportInventory({ navigation }) {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("ConsumableLand")}
+            onPress={() => navigation.navigate("Consumable Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#ecef57",
@@ -40,7 +40,7 @@ export default function LandReportInventory({ navigation }) {
             <Text>CONSUMABLE</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("ToolsLand")}
+            onPress={() => navigation.navigate("Tools Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#abdd53",
@@ -64,7 +64,7 @@ export default function LandReportInventory({ navigation }) {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("HarvestLand")}
+            onPress={() => navigation.navigate("Harvest Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#7cb407",
@@ -84,7 +84,7 @@ export default function LandReportInventory({ navigation }) {
             <Text>HARVEST</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("requisitionland")}
+            onPress={() => navigation.navigate("Requisition Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#349e00",
@@ -101,11 +101,11 @@ export default function LandReportInventory({ navigation }) {
       </View>
       <View style={{ flex: 1 }}>
         <View
-          onPress={() => navigation.navigate("advanceland")}
+          onPress={() => navigation.navigate("Advance Summaries")}
           style={{ flex: 1, flexDirection: "row" }}
         >
           <TouchableOpacity
-            onPress={() => navigation.navigate("advanceLand")}
+            onPress={() => navigation.navigate("Advance Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#606734",

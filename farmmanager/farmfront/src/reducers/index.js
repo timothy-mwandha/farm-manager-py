@@ -1,4 +1,3 @@
-// index.js
 import { combineReducers } from "redux";
 import userReducer from "./userReducer";
 import advanceReducer from "./advanceReducer";
@@ -14,6 +13,4 @@ export default combineReducers({
   expenditures: expenditureReducer,
   payrolls: payrollReducer,
   requisitions: requisitionReducer
-
-  // advance: advanceReducer
 });

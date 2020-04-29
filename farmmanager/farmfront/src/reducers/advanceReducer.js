@@ -1,8 +1,8 @@
 import {
   GET_ADVANCE,
+  DELETE_ADVANCE,
   DETAIL_ADVANCE,
   ADD_ADVANCE,
-  DELETE_ADVANCE,
   UPDATE_ADVANCE
 } from "../actions/types";
 
@@ -24,17 +24,23 @@ export default function(state = initialState, action) {
         ...state,
         items: state.items.filter(items => items.id !== action.payload)
       };
-
+       
     case DETAIL_ADVANCE:
       return {
         ...state,
         item: action.payload
       };
-    case ADD_ADVANCE:
-      return {
-        ...state,
-        item: action.payload
-      };
+
+    default:
+      return state;
+  }
+}
+
+    // case ADD_ADVANCE:
+    //   return {
+    //     ...state,
+    //     item: action.payload
+    //   };
 
     // case UPDATE_ADVANCE:{
     //             let { advance } = action.data;
@@ -50,8 +56,15 @@ export default function(state = initialState, action) {
 
     //             return {...state, advances: clone};
     //         };
+    
+// function todoApp(state = initialState, action) {
+//   switch (action.type) {
+//     case SET_VISIBILITY_FILTER:
+//       return Object.assign({}, state, {
+//         visibilityFilter: action.filter
+//       })
+//     default:
+//       return state
+//   }
+// } 
 
-    default:
-      return state;
-  }
-}

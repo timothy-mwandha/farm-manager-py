@@ -48,7 +48,6 @@ import LandReportInventory from "./src/components/LandReportInventory";
 // import ToolBinCard from "./src/components/ToolBinCard";
 
 import BottomNav from "./src/components/BottomNav";
-import Users from "./src/components/Users";
 
 // import UsersView from "./src/components/UsersView";
 
@@ -59,45 +58,44 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <Users /> */}
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Landing Page" component={HomePage} />
             <Stack.Screen name="Finance" component={LandReportFinace} />
-            <Stack.Screen name="IncomeForm" component={IncomeForm} />
-            <Stack.Screen name="IncomeLand" component={IncomeLand} />
-            <Stack.Screen name="IncomeDetails" component={IncomeDetails} />
-            <Stack.Screen name="ExpenditureForm" component={ExpenditureForm} />
-            <Stack.Screen name="ExpenditureLand" component={ExpenditureLand} />
+            <Stack.Screen name="Sales Form" component={IncomeForm} />
+            <Stack.Screen name="Sales Summaries" component={IncomeLand} />
+            <Stack.Screen name="Sales Details" component={IncomeDetails} />
+            <Stack.Screen name="Expenditure Form" component={ExpenditureForm} />
+            <Stack.Screen name="Expenditure Summaries" component={ExpenditureLand} />
             <Stack.Screen
-              name="ExpenditureDetails"
+              name="Expenditure Details"
               component={ExpenditureDetails}
             />
-            <Stack.Screen name="Payroll" component={PayRoll} />
-            <Stack.Screen name="PayrollLand" component={PayrollLand} />
-            <Stack.Screen name="PayrollDetails" component={PayrollDetails} />
-            <Stack.Screen name="Advance" component={Advance} />
-            <Stack.Screen name="AdvanceLand" component={AdvanceLand} />
-            <Stack.Screen name="AdvanceDetails" component={AdvanceDetails} />
-            <Stack.Screen name="RequisitionForm" component={RequisitionForm} />
-            <Stack.Screen name="RequisitionLand" component={RequisitionLand} />
+            <Stack.Screen name="Payroll Form" component={PayRoll} />
+            <Stack.Screen name="Payroll Summaries" component={PayrollLand} />
+            <Stack.Screen name="Payroll Details" component={PayrollDetails} />
+            <Stack.Screen name="Advance Form" component={Advance} />
+            <Stack.Screen name="Advance Summaries" component={AdvanceLand} />
+            <Stack.Screen name="Advance Details" component={AdvanceDetails} />
+            <Stack.Screen name="Requisition Form" component={RequisitionForm} />
+            <Stack.Screen name="Requisition Summaries" component={RequisitionLand} />
             <Stack.Screen
-              name="RequisitionDetails"
+              name="Requisition Details"
               component={RequisitionDetails}
             />
             <Stack.Screen name="Stores" component={LandReportInventory} />
-            {/* <Stack.Screen name="Consumable" component={Consumable} /> */}
-            {/* <Stack.Screen name="ConsumableLand" component={ConsumableLand} /> */}
+            {/* <Stack.Screen name="Consumable Form" component={Consumable} /> */}
+            {/* <Stack.Screen name="Consumable Summaries" component={ConsumableLand} /> */}
             {/* <Stack.Screen
-              name="ConsumableDetails"
+              name="Consumable Details"
               component={ConsumableDetails}
             /> */}
-            {/* <Stack.Screen name="Harvest" component={Harvest} /> */}
-            {/* <Stack.Screen name="HarvestLand" component={HarvestLand} /> */}
-            {/* <Stack.Screen name="HarvestDetails" component={HarvestDetails} /> */}
-            {/* <Stack.Screen name="Tools" component={Tools} /> */}
-            {/* <Stack.Screen name="ToolsLand" component={ToolsLand} /> */}
-            {/* <Stack.Screen name="ToolsDetails" component={ToolsDetails} /> */}
+            {/* <Stack.Screen name="Harvest Form" component={Harvest} /> */}
+            {/* <Stack.Screen name="Harvest Summaries" component={HarvestLand} /> */}
+            {/* <Stack.Screen name="Harvest Details" component={HarvestDetails} /> */}
+            {/* <Stack.Screen name="Tools Form" component={Tools} /> */}
+            {/* <Stack.Screen name="Tools Summaries" component={ToolsLand} /> */}
+            {/* <Stack.Screen name="Tools Details" component={ToolsDetails} /> */}
             {/* <Stack.Screen name="ToolBinCard" component={ToolBinCard} /> */}
           </Stack.Navigator>
         </NavigationContainer>

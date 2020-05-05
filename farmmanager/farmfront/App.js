@@ -140,103 +140,146 @@ export default class App extends Component {
 }
 AppRegistry.registerComponent("App", () => App);
 
-// import "react-native-gesture-handler";
-// import React, { Component } from "react";
-// import ReactDom from "react-dom";
-// import { AppRegistry, View, Text, Button } from "react-native";
 
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { createStackNavigator } from "@react-navigation/stack";
-// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import React, { Component } from 'react';
+import {
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  Image,
+  StyleSheet
+} from "react-native";
+export class App extends React.Component {
+  state = {
+    products: [
+      {title: 'Apple', count: 0, price: 100},
+      {title: 'IBM', count: 0, price: 200},
+      {title: 'HP', count: 0, price: 300},
+    ]
+  }
+  
+  onChange = (index, val) => {
+    this.setState({
+      products: this.state.products.map((product, i) => (
+        i === index ? {...product, count: val} : product
+      ))
+    })
+  }
 
-// import { Provider } from "react-redux";
-// import store from "./src/components/store";
+  render () {
+    return (
+      <View>
+        <Text products={this.state.products} onChange={this.onChange} />
+        <Text products={this.state.products} />
+      </View>
+    )
+  }
+};
 
-// import HomePage from "./src/components/HomePage";
-// import SignUp from "./src/components/SignUp";
-// import Login from "./src/components/Login";
-// import PayRoll from "./src/components/PayRoll";
-// import PasswordRecoveryOne from "./src/components/PasswordRecoveryOne";
-// import PasswordRecoveryTwo from "./src/components/PasswordRecoveryTwo";
-// import Advance from "./src/components/Advance";
-// // import ToolBinCard from "./src/components/ToolBinCard";
-// // import Personnel from "./src/components/Personnel";
-// import ExpenditureForm from "./src/components/ExpenditureForm";
-// import IncomeForm from "./src/components/IncomeForm";
-// import BottomNav from "./src/components/BottomNav";
-// import Harvest from "./src/components/Harvest";
-// import Consumable from "./src/components/Consumable";
-// import RequisitionForm from "./src/components/RequisitionForm";
-// import LandReportFinace from "./src/components/LandReportFinance";
-// import LandReportInventory from "./src/components/LandReportInventory";
-// import IncomeLand from "./src/components/IncomeLand";
-// import ExpenditureLand from "./src/components/ExpenditureLand";
-// import PayrollLand from "./src/components/PayrollLand";
-// import RequisitionLand from "./src/components/RequisitionLand";
-// import AdvanceLand from "./src/components/AdvanceLand";
-// import Users from "./src/components/Users";
-// import AdvanceDetails from "./src/components/AdvanceDetails";
+const ProductList = ({ products, onChange }) => (
+  <ul>
+    {products.map((product, i) => (
+      <li key={i}>
+        {product.title}
+        <input 
+          type="text" 
+          value={product.count}
+          onChange={e => onChange(i, parseInt(e.target.value) || 0)}
+        />
+      </li>
+    ))}
+  </ul>
+);
 
-// const Tab = createMaterialBottomTabNavigator();
-// const Stack = createStackNavigator();
+const Total = ({ products }) => (
+  <h3>
+    Price: 
+    {products.reduce((sum, i) => (
+      sum += i.count * i.price
+    ), 0)}
+  </h3>
+)
 
-// export default class App extends Component {
-//     render() {
-//         return (
-//             <Provider store={store}>
-//                 <NavigationContainer>
-//                     <Stack.Navigator>
-//                         <Stack.Screen
-//                             name="Landing Page"
-//                             component={HomePage}
-//                         />
-//                         <Stack.Screen
-//                             name="Finance"
-//                             component={LandReportFinace}
-//                         />
-//                         <Stack.Screen
-//                             name="incomeForm"
-//                             component={IncomeForm}
-//                         />
-//                         <Stack.Screen
-//                             name="expenditureForm"
-//                             component={ExpenditureForm}
-//                         />
-//                         <Stack.Screen
-//                             name="incomeLand"
-//                             component={IncomeLand}
-//                         />
-//                         <Stack.Screen
-//                             name="expenditureland"
-//                             component={ExpenditureLand}
-//                         />
-//                         <Stack.Screen
-//                             name="payrollLand"
-//                             component={PayrollLand}
-//                         />
-//                         <Stack.Screen
-//                             name="requisitionland"
-//                             component={RequisitionLand}
-//                         />
-//                         <Stack.Screen name="payroll" component={PayRoll} />
-//                         <Stack.Screen
-//                             name="requisitionForm"
-//                             component={RequisitionForm}
-//                         />
-//                         <Stack.Screen name="advance" component={Advance} />
-//                         <Stack.Screen
-//                             name="advanceLand"
-//                             component={AdvanceLand}
-//                         />
-//                         <Stack.Screen
-//                             name="advanceDetails"
-//                             component={AdvanceDetails}
-//                         />
-//                     </Stack.Navigator>
-//                 </NavigationContainer>
-//             </Provider>
-//         );
-//     }
+
+export default App
+
+
+// import React from 'react';
+// import { View, Text, FlatList, Button, SafeAreaView, processColor } from 'react-native';
+
+// const products = [
+//   { _id: 1, name: 'Item 1', price: 50, quantity: 0 },
+//   { _id: 2, name: 'Item 2', price: 29, quantity: 0 },
+//   { _id: 3, name: 'Item 3', price: 200, quantity: 0 },
+// ];
+
+// class ListItem extends React.Component {
+//   render() {
+//     const { item } = this.props;
+// 5
+//     return (
+//       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+//         <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
+//           <Text>{item.name} - </Text>
+//           <Text>{item.price}</Text>
+//         </View>
+//         <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
+//           <Button title="Subtract" onPress={this.props.onSubtract} />
+//           <Text>{item.quantity}</Text>
+//           <Button title="Add" onPress={this.props.onAdd} />
+//         </View>
+//       </View>
+//     )
+//   }
 // }
-// AppRegistry.registerComponent("App", () => App);
+
+// class App extends React.Component {
+//   state = {
+//     products,
+//   };
+
+//   onSubtract = (item, index) => {
+//     const products = [...this.state.products];
+//     products[index].quantity -= 1;
+//     this.setState({ products });
+//   }
+
+//   onAdd = (item, index) => {
+//     const products = [...this.state.products];
+//     products[index].quantity += 1;
+//     this.setState({ products });
+//   }
+
+//   render() {
+//     const { products } = this.state;
+//     let totalQuantity = 0;
+//     let totalPrice = 0;
+//     products.forEach((item) => {
+//       totalQuantity += item.quantity;
+//       totalPrice += item.quantity * item.price;
+//     })
+
+//     return (
+//       <SafeAreaView style={{ flex: 1 }}>
+//         <FlatList
+//           data={this.state.products}
+//           renderItem={({ item, index }) => (
+//             <ListItem
+//               item={item}
+//               onSubtract={() => this.onSubtract(item, index)}
+//               onAdd={() => this.onAdd(item, index)}
+//             />
+//           )}
+//           keyExtractor={item => item._id}
+//         />
+//         <Text>Total Quantity: {totalQuantity}</Text>
+//         <Text>Total Price: {totalPrice}</Text>
+//       </SafeAreaView>
+//     );
+//   }
+// }
+
+// export default App;

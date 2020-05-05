@@ -6,7 +6,7 @@ import {
   Text,
   Button,
   Image,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 var t = require("tcomb-form-native");
@@ -169,7 +169,7 @@ export default class Personnel extends Component {
   render() {
     let { image } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Personnel File</Text>
@@ -190,7 +190,7 @@ export default class Personnel extends Component {
             </View>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

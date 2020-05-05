@@ -6,7 +6,7 @@ import {
   Button,
   Linking,
   Text,
-  KeyboardAvoidingView
+  SafeAreaView
 } from "react-native";
 
 var t = require("tcomb-form-native");
@@ -40,12 +40,13 @@ const Form = t.form.Form;
 //     return takenReg.test(TakenBy);
 // })
 
-const User = t.struct({
+const Consumable = t.struct({
+  Date: t.Date,
   Name: t.String,
   Quantity: t.Number,
   QuantityUsed: t.Number,
   QuantityBalance: t.Number,
-  Description: t.String,
+  Description: t.maybe(t.String),
   Notification: t.String,
   TakenBy: t.String
 });
@@ -74,6 +75,16 @@ const formStyles = {
 
 const options = {
   fields: {
+    date: {
+      label: "Date",
+      mode: "date",
+      error: "Please enter a correct date",
+      returnKeyType: "next",
+      config: {
+        defaultValueText: "Select",
+        format: date => moment(date).format("YYYY-DD-MM")
+      }
+    },
     Name: {
       error: "Please enter a correct Name"
     },
@@ -104,7 +115,7 @@ export default class Consumable extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
+      <SafeAreaView
         style={styles.container}
         behavior="padding"
         enabled
@@ -118,7 +129,11 @@ export default class Consumable extends Component {
               <Text style={styles.title}>Consumable</Text>
             </View>
             <View style={styles.horizontal} />
-            <Form ref={c => (this._form = c)} type={User} options={options} />
+            <Form
+              ref={c => (this._form = c)}
+              type={Consumable}
+              options={options}
+            />
             <View style={styles.button}>
               <Button
                 color="#0A802B"
@@ -128,7 +143,7 @@ export default class Consumable extends Component {
             </View>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

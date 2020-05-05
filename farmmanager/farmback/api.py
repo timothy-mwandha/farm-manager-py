@@ -4,7 +4,7 @@ from .serializers import *
 
 #User Viewset
 class UserViewset(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -12,7 +12,7 @@ class UserViewset(viewsets.ModelViewSet):
 
 #Personnel Viewset
 class PersonnelViewset(viewsets.ModelViewSet):
-    queryset = Personnel.objects.all()
+    queryset = Personnel.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -20,7 +20,7 @@ class PersonnelViewset(viewsets.ModelViewSet):
 
 #Income Viewset
 class IncomeViewset(viewsets.ModelViewSet):
-    queryset = Income.objects.all()
+    queryset = Income.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -28,7 +28,7 @@ class IncomeViewset(viewsets.ModelViewSet):
     
 #Expenditure Viewset
 class ExpenditureViewset(viewsets.ModelViewSet):
-    queryset = Expenditure.objects.all()
+    queryset = Expenditure.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -36,7 +36,7 @@ class ExpenditureViewset(viewsets.ModelViewSet):
     
 #Consumable Viewset
 class ConsumableViewset(viewsets.ModelViewSet):
-    queryset = Consumable.objects.all()
+    queryset = Consumable.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -44,7 +44,7 @@ class ConsumableViewset(viewsets.ModelViewSet):
 
 #Harvest Viewset
 class HarvestViewset(viewsets.ModelViewSet):
-    queryset = Harvest.objects.all()
+    queryset = Harvest.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -52,7 +52,7 @@ class HarvestViewset(viewsets.ModelViewSet):
 
 #AdvanceForm Viewset
 class AdvanceFormViewset(viewsets.ModelViewSet):
-    queryset = AdvanceForm.objects.all()
+    queryset = AdvanceForm.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -60,7 +60,7 @@ class AdvanceFormViewset(viewsets.ModelViewSet):
     
 #Payroll Viewset
 class PayrollViewset(viewsets.ModelViewSet):
-    queryset = Payroll.objects.all()
+    queryset = Payroll.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -68,7 +68,7 @@ class PayrollViewset(viewsets.ModelViewSet):
     
 #Requisition Viewset
 class RequisitionViewset(viewsets.ModelViewSet):
-    queryset = Requisition.objects.all()
+    queryset = Requisition.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -76,7 +76,7 @@ class RequisitionViewset(viewsets.ModelViewSet):
     
 #ToolBinCard Viewset
 class ToolBinCardViewset(viewsets.ModelViewSet):
-    queryset = ToolBinCard.objects.all()
+    queryset = ToolBinCard.objects.all().order_by('-date')
     permissions_classes = [
         permissions.AllowAny
     ]

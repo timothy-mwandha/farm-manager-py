@@ -243,8 +243,11 @@ class AdvanceDetails extends Component {
 
         <TouchableOpacity
           onPress={() => {
-            this.props.deleteAdvance.bind(this, advance.id);
-            // navigation.navigate("AdvanceLand");
+             const ids = this.props.route.params.itemId;
+            console.log("id ayooo----------------------------------", ids);
+            console.log(ids)
+            this.props.deleteAdvance.ids;
+            navigation.navigate("Advance Summaries");
           }}
           style={{
             flex: 1,
@@ -299,87 +302,4 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-
-
-
-
-// import "react-native-gesture-handler";
-// import React, { Component } from "react";
-// import {
-//     Text,
-//     View,
-//     Button,
-//     TouchableOpacity,
-//     KeyboardAvoidingView,
-//     ScrollView,
-// } from "react-native";
-// import {
-//     getAdvances,
-//     deleteAdvance,
-//     detailAdvance,
-// } from "../actions/advanceActions";
-// import { connect } from "react-redux";
-
-// class AdvanceDetails extends Component {
-//     componentDidMount() {
-//                 const id = this.props.route.params.itemId
-//         console.log('ayooo----------------------------------', id)
-
-//         this.props.detailAdvance(id);
-//     }
-
-//     render() {
-//         const { navigation } = this.props;
-//         const {advance} = this.props
-//        const item = (<View key={advance.id}>
-//                 <TouchableOpacity
-//                     // onPress={() => {
-//                     //     navigation.navigate("advanceDetails");
-//                     //     // this.props.deleteAdvance.bind(this, advances.id);
-//                     // }}
-//                 >
-//                     <Text>Date :              {advance.date}</Text>
-//                      <Text>Name :            {advance.name}</Text>
-//                      <Text>Gender :          {advance.gender}</Text>
-//                      <Text>Position:          {advance.position}</Text>
-//                      <Text>Status:             {advance.status}</Text>
-//                      <Text>Amount:          {advance.advancedamnt}</Text>
-//                     <Text>Description:    {advance.description}</Text>
-//                 </TouchableOpacity>
-
-//                 <TouchableOpacity
-//                     onPress={() =>this.props.deleteAdvance.bind(this, advance.id)}
-//                     style={{
-//                         flex: 1,
-//                         alignSelf: "stretch",
-//                         flexDirection: "row",
-//                         backgroundColor: "#cedcf2",
-//                         height: 35,
-//                         borderBottomColor: "#cedcf2",
-//                         fontSize: 30,
-//                         borderBottomWidth: 2,
-//                         margin: 10,
-//                     }}
-//                 >
-//                     <Text>Delete</Text>
-//                 </TouchableOpacity>
-//             </View>)
-//         return (
-//             <ScrollView>
-//                 <View>
-//                     <Text> Advance Summary </Text>
-//                     {item}
-//                 </View>
-//             </ScrollView>
-//         );
-//     }
-// }
-
-// const mapStateToProps = (state) => ({
-//     advance: state.advances.item,
-// });
-
-// export default connect(mapStateToProps, { getAdvances, deleteAdvance, detailAdvance })(
-//     AdvanceDetails
-// );
 

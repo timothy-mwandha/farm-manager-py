@@ -7,8 +7,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 import ConsumableLand from "./ConsumableLand";
-import HarvestLand from "./HarvestLand";
-import ToolsLand from "./ToolsLand";
+import ToolLand from "./ToolLand";
+
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,16 +31,19 @@ export default function LandReportInventory({ navigation }) {
               fontSize: 30
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/consumable_icon.png")} />
-            <Text>CONSUMABLE</Text>
+              }}
+              source={require("../images/consumable_icon.png")}
+            />
+            <Text>CONSUMABLES</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Tools Summaries")}
+            onPress={() => navigation.navigate("Tool Summaries")}
             style={{
               flex: 1,
               backgroundColor: "#abdd53",
@@ -51,13 +54,16 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/agri_tools.jpg")} />
-            <Text>TOOLS</Text>
+              }}
+              source={require("../images/fertiizer-icon.png")}
+            />
+            <Text>SEEDLINGS</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -75,13 +81,16 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/coffee-harvest.jpg")} />
-            <Text>HARVEST</Text>
+              }}
+              source={require("../images/ferterlizer.png")}
+            />
+            <Text>FERTILIZERS</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("Requisition Summaries")}
@@ -95,7 +104,16 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
-            <Text>OTHER</Text>
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/pesticide.png")}
+            />
+            <Text>PESTICIDES</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -116,7 +134,16 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
-            <Text>OTHER</Text>
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/agri_tools.jpg")}
+            />
+            <Text>TOOLS</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -128,7 +155,16 @@ export default function LandReportInventory({ navigation }) {
               alignItems: "center"
             }}
           >
-            <Text>OTHER</Text>
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/agri_machinery.jpg")}
+            />
+            <Text>MACHINERY</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -136,89 +172,3 @@ export default function LandReportInventory({ navigation }) {
   );
 }
 
-// import 'react-native-gesture-handler';
-// import React from "react";
-// import {
-//   View, StyleSheet,
-//   Text,
-//   TouchableOpacity,
-//   Button,
-// } from "react-native";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { createStackNavigator } from '@react-navigation/stack';
-// // import LandReportFinance from "./ConsumableForm";
-// // import LandReportInventory from "./LandReportInventory";
-
-// const Stack = createStackNavigator();
-
-// export default function LandReportInventory({navigation}) {
-//   return (
-//     <View style={styles.container}>
-
-//       <TouchableOpacity style={styles.finance}>
-//         <View>
-//           <Text>INVENTORY</Text>
-//         </View>
-//       </TouchableOpacity>
-//       <Button
-//                     title="ADD"
-//                     style={styles.butt}
-//                     onPress={() => navigation.navigate("NewToolForm")}
-//                 />
-
-//       </View>
-//   );
-// }
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     marginTop: 25
-//   },
-//   nav: {
-//     flex: 0.7,
-//     flexDirection: "row",
-//     backgroundColor: "#ad2525",
-//     justifyContent: "center",
-//     alignItems: "center"
-//   },
-//   menu: {
-//     flex: 1,
-//     height: 90,
-//     alignItems: "flex-start",
-//     paddingLeft: 15,
-//     justifyContent: "center",
-//     color: "white"
-//   },
-//   detail: {
-//     flex: 1,
-//     justifyContent: "center",
-//     height: 90,
-//     alignItems: "flex-end",
-//     paddingRight: 15
-//   },
-//   finance: {
-//     backgroundColor: "green",
-//     flex: 2,
-//     justifyContent: "center",
-//     margin: 8,
-//     alignItems: "center"
-//   },
-//   inventory: {
-//     backgroundColor: "gray",
-//     margin: 8,
-//     flex: 2,
-//     alignItems: "center",
-//     justifyContent: "center"
-//   },
-//   update: {
-//     backgroundColor: "black",
-//     margin: 8,
-//     flex: 1.3,
-//     justifyContent: "center",
-//     alignItems: "center"
-//   },
-//   text: {
-//     color: "white"
-//   }
-// });

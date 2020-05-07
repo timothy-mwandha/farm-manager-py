@@ -14,7 +14,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AdvanceForm',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('name', models.CharField(max_length=100)),
                 ('gender', models.CharField(max_length=100)),
@@ -27,7 +29,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Consumable',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('name', models.CharField(max_length=100)),
                 ('qty', models.IntegerField()),
@@ -41,7 +45,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Expenditure',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('suppl', models.CharField(max_length=100)),
                 ('phone', models.IntegerField()),
@@ -65,7 +71,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Harvest',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('qty', models.IntegerField()),
                 ('units', models.IntegerField()),
@@ -77,7 +85,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Income',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('customer', models.CharField(max_length=100)),
                 ('phone', models.IntegerField()),
@@ -100,7 +110,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Payroll',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('name', models.CharField(max_length=100)),
                 ('gender', models.CharField(max_length=100)),
@@ -121,13 +133,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Personnel',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('fname', models.CharField(max_length=100)),
                 ('lname', models.CharField(max_length=100)),
                 ('dob', models.CharField(max_length=50)),
                 ('phone1', models.IntegerField()),
                 ('phone2', models.IntegerField(blank=True)),
-                ('nin', models.CharField(blank=True, max_length=100, unique=True)),
+                ('nin', models.CharField(blank=True, max_length=100,
+                                         unique=True)),
                 ('title', models.CharField(max_length=100)),
                 ('startdate', models.CharField(max_length=50)),
                 ('qualif', models.CharField(max_length=100)),
@@ -136,7 +151,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Requisition',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('date', models.CharField(max_length=50)),
                 ('costtype', models.CharField(max_length=100)),
                 ('units', models.CharField(max_length=50)),
@@ -153,7 +170,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ToolBinCard',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('toolname', models.CharField(max_length=100)),
                 ('description', models.CharField(max_length=100)),
                 ('datein', models.CharField(max_length=50)),
@@ -168,7 +187,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('email', models.EmailField(max_length=50, unique=True)),
                 ('phone', models.IntegerField()),

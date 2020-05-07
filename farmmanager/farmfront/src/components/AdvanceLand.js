@@ -12,6 +12,7 @@ import {
   ScrollView,
   StyleSheet
 } from "react-native";
+// import BottomNav from "./BottomNav";
 
 class AdvanceLand extends Component {
   componentDidMount() {

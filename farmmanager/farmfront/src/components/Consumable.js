@@ -11,39 +11,11 @@ import {
 
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
-// const Quantity = t.refinement(t.String, Quantity => {
-//     const qtyReg = /^[0-9\s]$/;
-//     return qtyReg.test(Quantity);
-// });
-// const QuantityUsed = t.refinement(t.Number, QuantityUsed => {
-//     const qtyUsedReg = /^[0-9\s]$/;
-//     return qtyUsedReg.test(QuantityUsed);
-// });
-// const Name = t.refinement(t.String, Name => {
-//     const regex = /^[a-zA-Z].*[\s\.]*$/g;
-//     return regex.test(Name);
-// });
-
-// const QuantityBalance = t.refinement(t.Number, QuantityBalance => {
-//     const qtyBalanceReg = /^[0-9\s]$/;
-//     return qtyBalanceReg.test(QuantityBalance);
-// })
-// const Description = t.refinement(t.String, Description => {
-//     const descReg = /^[a-zA-Z].*[\s\.]*$/g;
-//     return descReg.test(Description);
-// })
-// const Notification = t.refinement(t.String, Notification => {
-//     const notificationReg = ''
-// })
-// const TakenBy = t.refinement(t.String, TakenBy => {
-//     const takenReg = /^[a-zA-Z].*[\s\.]*$/g;
-//     return takenReg.test(TakenBy);
-// })
 
 const Consumable = t.struct({
   Date: t.Date,
   Name: t.String,
-  Quantity: t.Number,
+  QuantityTaken: t.Number,
   QuantityUsed: t.Number,
   QuantityBalance: t.Number,
   Description: t.maybe(t.String),
@@ -88,8 +60,9 @@ const options = {
     Name: {
       error: "Please enter a correct Name"
     },
-    Quantity: {
-      error: "Please enter correct quantity value"
+    QuantityTaken: {
+      label: "Quantity Taken",
+      error: "Please enter correct quantity taken"
     },
     QuantityUsed: {
       label: "Quantity Used",
@@ -108,39 +81,86 @@ const options = {
 };
 
 export default class Consumable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  InsertDataToServer = async () => {
+    fetch("http://127.0.0.1:8000/api/consumable/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        date: this.Date,
+        name: this.Name,
+        qtytaken: this.QuantityTaken,
+        qtyused: this.QuantityUsed,
+        qtybal: this.QuantityBalance,
+        description: this.Description,
+        notification: this.Notification,
+        takenby: this.TakenBy
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        return responseJson;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  onChange = value => {
+    this.setState({ value });
+  };
+
+  clearForm = () => {
+    this.setState({ value: null });
+  };
+
   handleSubmit = () => {
     const value = this._form.getValue();
-    console.log("value: ", value);
+    console.log(value);
+    if (value != null) {
+      (this.Date: value.Date),
+        (this.Name: value.Name),
+        (this.QuantityTaken: value.QuantityTaken),
+        (this.QuantityUsed: value.QuantityUsed),
+        (this.QuantityBalance: value.QuantityBalance),
+        (this.Description: value.Description),
+        (this.Notification: value.Notification),
+        (this.TakenBy: value.TakenBy),
+        this.InsertDataToServer();
+      this.clearForm();
+      alert("Advance captured!");
+    } else console.log("No data entered");
   };
 
   render() {
     return (
-      <SafeAreaView
-        style={styles.container}
-        behavior="padding"
-        enabled
-        onPress={() => {
-          Keyboard.dismiss();
-        }}
-      >
+      <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
-            <View>
-              <Text style={styles.title}>Consumable</Text>
-            </View>
-            <View style={styles.horizontal} />
+            <Text style={styles.title}>Consumable</Text>
             <Form
               ref={c => (this._form = c)}
               type={Consumable}
+              value={this.state.value}
+              onChange={this.onChange.bind(this)}
               options={options}
             />
-            <View style={styles.button}>
-              <Button
-                color="#0A802B"
-                title="Save"
-                onPress={this.handleSubmit}
-              />
-            </View>
+            <TouchableOpacity>
+              <View style={styles.button}>
+                <Button
+                  color="#0A802B"
+                  title="SAVE"
+                  onPress={this.handleSubmit.bind(this)}
+                />
+              </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -151,30 +171,16 @@ export default class Consumable extends Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    marginTop: 24,
-    padding: 20,
-    paddingBottom: 50
+    marginTop: 15,
+    padding: 20
   },
   title: {
-    fontSize: 35,
+    fontSize: 25,
+    fontWeight: "bold",
     marginTop: 5,
-    color: "#650205",
+    color: "#006432",
     textAlign: "center",
     marginBottom: 25
-  },
-  question: {
-    color: "#650205",
-    textAlign: "center",
-    marginTop: 18,
-    fontSize: 18
-  },
-  link: {
-    fontWeight: "bold",
-    color: "#650205",
-    textAlign: "center",
-    marginTop: 8,
-    fontSize: 20,
-    fontWeight: "bold"
   },
   button: {
     marginTop: 20,

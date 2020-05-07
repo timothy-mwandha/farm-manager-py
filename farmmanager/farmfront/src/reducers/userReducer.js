@@ -1,9 +1,10 @@
 // // postReducer.js
 
 import {
-  GET_USERS,
-  ADD_USER,
+  GET_USER,
   DELETE_USER,
+  DETAIL_USER,
+  ADD_USER,
   UPDATE_USER
 } from "../actions/types";
 
@@ -14,18 +15,58 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_USERS:
+    case GET_USER:
       return {
         ...state,
         items: action.payload
-        //    items:action.users // the payload can be users if you used users in place of payload
       };
-    case ADD_USER:
+
+    case DELETE_USER:
+      return {
+        ...state,
+        items: state.items.filter(items => items.id !== action.payload)
+      };
+       
+    case DETAIL_USER:
       return {
         ...state,
         item: action.payload
       };
+
     default:
       return state;
   }
 }
+
+    // case ADD_USER:
+    //   return {
+    //     ...state,
+    //     item: action.payload
+    //   };
+
+    // case UPDATE_USER:{
+    //             let { USER } = action.data;
+
+    //             //clone the current state
+    //             let clone = JSON.parse(JSON.stringify(state.USERs));
+
+    //             //check if bookmark already exist
+    //             const index = clone.findIndex((obj) => obj.id === USER.id);
+
+    //             //if the USER is in the array, update the USER
+    //             if (index !== -1) clone[index] = USER;
+
+    //             return {...state, USERs: clone};
+    //         };
+    
+// function todoApp(state = initialState, action) {
+//   switch (action.type) {
+//     case SET_VISIBILITY_FILTER:
+//       return Object.assign({}, state, {
+//         visibilityFilter: action.filter
+//       })
+//     default:
+//       return state
+//   }
+// } 
+

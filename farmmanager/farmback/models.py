@@ -1,4 +1,5 @@
-from django.db import models 
+from django.db import models
+
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -20,7 +21,7 @@ class Personnel(models.Model):
 
 
 class Income(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     customer = models.CharField(max_length=100)
     phone = models.IntegerField()
     product = models.CharField(max_length=50, blank=True)
@@ -40,17 +41,17 @@ class Income(models.Model):
 
 
 class Expenditure(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     suppl = models.CharField(max_length=100)
     phone = models.IntegerField()
     product = models.CharField(max_length=50)
     typeofex = models.CharField(max_length=50)
     unit = models.CharField(max_length=50)
-    unitprice  = models.IntegerField()
+    unitprice = models.IntegerField()
     quantity = models.IntegerField()
-    subtotal  = models.IntegerField()
+    subtotal = models.IntegerField()
     tax = models.IntegerField(blank=True)
-    description  = models.CharField(max_length=500, blank=True)
+    description = models.CharField(max_length=500, blank=True)
     total = models.IntegerField()
     invnumber = models.IntegerField(blank=True)
     amountpaid = models.IntegerField()
@@ -59,10 +60,22 @@ class Expenditure(models.Model):
     baldue = models.IntegerField(blank=True)
     balduedate = models.CharField(max_length=50, blank=True)
 
+
 class Consumable(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
-    qty = models.IntegerField()
+    qtytaken = models.IntegerField()
+    qtyused = models.IntegerField()
+    qtybal = models.IntegerField()
+    description = models.CharField(max_length=100, blank=True)
+    notification = models.IntegerField()
+    takenby = models.CharField(max_length=100)
+
+
+class NewConsumable(models.Model):
+    date = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    qtytaken = models.IntegerField()
     qtyused = models.IntegerField()
     qtybal = models.IntegerField()
     description = models.CharField(max_length=100, blank=True)
@@ -71,7 +84,7 @@ class Consumable(models.Model):
 
 
 class Harvest(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     qty = models.IntegerField()
     units = models.IntegerField()
     source = models.CharField(max_length=100)
@@ -80,7 +93,7 @@ class Harvest(models.Model):
 
 
 class AdvanceForm(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
@@ -88,8 +101,9 @@ class AdvanceForm(models.Model):
     advancedamnt = models.IntegerField()
     description = models.CharField(max_length=100, blank=True)
 
+
 class Payroll(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
@@ -107,7 +121,7 @@ class Payroll(models.Model):
 
 
 class Requisition(models.Model):
-    date =  models.CharField(max_length=50)
+    date = models.CharField(max_length=50)
     costtype = models.CharField(max_length=100)
     units = models.CharField(max_length=50)
     activity = models.CharField(max_length=100)
@@ -117,16 +131,27 @@ class Requisition(models.Model):
     description = models.CharField(max_length=50, blank=True)
     requestby = models.CharField(max_length=50)
     approvby = models.CharField(max_length=50, blank=True)
-    total  = models.IntegerField()
+    total = models.IntegerField()
 
 
 class ToolBinCard(models.Model):
     toolname = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    datein =  models.CharField(max_length=50)
+    datein = models.CharField(max_length=50)
     storename = models.CharField(max_length=100)
-    dateout =  models.CharField(max_length=50)
+    dateout = models.CharField(max_length=50)
     takenby = models.CharField(max_length=100)
     toolcond = models.CharField(max_length=100)
-    dateofpurch =  models.CharField(max_length=50)
+    dateofpurch = models.CharField(max_length=50)
     serialno = models.IntegerField(blank=True)
+
+
+class Tool(models.Model):
+    datein = models.CharField(max_length=50)
+    toolname = models.CharField(max_length=100)
+    qty = models.IntegerField()
+    dateofpurch = models.CharField(max_length=50)
+    toolcond = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    serialno = models.IntegerField(blank=True)
+    storename = models.CharField(max_length=100, blank=True)

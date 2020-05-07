@@ -49,7 +49,7 @@ class RequisitionLand extends Component {
     return (
       <ScrollView>
         <View>
-          <Text style={styles.heading}> Requisition Summaries </Text>
+          <Text style={styles.heading}> Order Summaries </Text>
           {requisitionItems}
           <TouchableOpacity
             style={styles.TouchableOpacityStyle}

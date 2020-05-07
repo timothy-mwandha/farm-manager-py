@@ -35,7 +35,7 @@ const Stack = createStackNavigator();
 
 export default function LandReportFinace({ navigation }) {
   return (
-    <View style={{ flex: 1, backgroundColor:"gray"}}>
+    <View style={{ flex: 1, backgroundColor: "" }}>
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
@@ -51,12 +51,15 @@ export default function LandReportFinace({ navigation }) {
               fontSize: 30
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/sales.png")} />
+              }}
+              source={require("../images/sales.png")}
+            />
             <Text>SALES</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -71,18 +74,44 @@ export default function LandReportFinace({ navigation }) {
               alignItems: "center"
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/expense_icon.png")} />
-            <Text>EXPENDITURE</Text>
+              }}
+              source={require("../images/expense_icon.png")}
+            />
+            <Text>EXPENSES</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Order Summaries")}
+            style={{
+              flex: 1,
+              backgroundColor: "#349e00",
+              borderRadius: 20,
+              margin: 10,
+              fontSize: 24,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/purchase_order_icon.jpg")}
+            />
+            <Text>ORDERS</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("Payroll Summaries")}
             style={{
@@ -95,33 +124,16 @@ export default function LandReportFinace({ navigation }) {
               alignItems: "center"
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/payroll_icon.jpg")} />
+              }}
+              source={require("../images/payroll_icon.jpg")}
+            />
             <Text>PAYROLL</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Requisition Summaries")}
-            style={{
-              flex: 1,
-              backgroundColor: "#349e00",
-              borderRadius: 20,
-              margin: 10,
-              fontSize: 24,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-          <Image style={{
-                alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
-              }} source={require("../images/purchase_order_icon.jpg")} />
-            <Text>REQUISITION</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -143,15 +155,74 @@ export default function LandReportFinace({ navigation }) {
               alignItems: "center"
             }}
           >
-          <Image style={{
+            <Image
+              style={{
                 alignSelf: "center",
                 width: 80,
                 height: 80,
                 marginRight: 5
-              }} source={require("../images/advance-icon.png")} />
-            <Text>ADVANCE</Text>
+              }}
+              source={require("../images/customers_icon_3.png")}
+            />
+            <Text>CUSTOMERS</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => navigation.navigate("Advance Summaries")}
+            style={{
+              flex: 1,
+              // backgroundColor: "#606734",
+              backgroundColor: "#abdd53",
+              borderRadius: 20,
+              margin: 10,
+              fontSize: 24,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/supplier.png")}
+            />
+            <Text>SUPPLIERS</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* <View style={{ flex: 1 }}>
+        <View
+          // onPress={() => navigation.navigate("AdvanceLand")}
+          style={{ flex: 1, flexDirection: "row" }}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Advance Summaries")}
+            style={{
+              flex: 1,
+              // backgroundColor: "#606734",
+              backgroundColor: "#abdd53",
+              borderRadius: 20,
+              margin: 10,
+              fontSize: 24,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={{
+                alignSelf: "center",
+                width: 80,
+                height: 80,
+                marginRight: 5
+              }}
+              source={require("../images/advance-icon.png")}
+            />
+            <Text>ADVANCE</Text>
+          </TouchableOpacity> */}
+      {/* <TouchableOpacity
             style={{
               flex: 1,
               backgroundColor: "#163700",
@@ -162,9 +233,9 @@ export default function LandReportFinace({ navigation }) {
             }}
           >
             <Text>OTHER</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+          </TouchableOpacity> */}
+      {/* </View> */}
+      {/* </View> */}
     </View>
   );
 }

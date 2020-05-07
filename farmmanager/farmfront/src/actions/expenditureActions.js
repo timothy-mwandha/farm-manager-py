@@ -65,15 +65,11 @@ export const addAdvance = expenseData => dispatch => {
     body: JSON.stringify(expenseData)
   })
     .then(res => res.json())
-    .then(
-      expense =>
-        dispatch({
-          type: ADD_EXPENDITURE,
-          payload: expense
-        })
-      // alert("expense added");
-      // Alert.alert(responseJson);
-      // this.props.navigation.navigate("expenditureLand");
+    .then(expense =>
+      dispatch({
+        type: ADD_EXPENDITURE,
+        payload: expense
+      })
     )
     .catch(error => {
       console.error("Failed to add expense", error);

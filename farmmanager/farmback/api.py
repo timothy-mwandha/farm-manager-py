@@ -2,7 +2,8 @@ from .models import *
 from rest_framework import viewsets, permissions
 from .serializers import *
 
-#User Viewset
+
+# User Viewset
 class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permissions_classes = [
@@ -10,7 +11,8 @@ class UserViewset(viewsets.ModelViewSet):
     ]
     serializer_class = UserSerializer
 
-#Personnel Viewset
+
+# Personnel Viewset
 class PersonnelViewset(viewsets.ModelViewSet):
     queryset = Personnel.objects.all()
     permissions_classes = [
@@ -18,23 +20,26 @@ class PersonnelViewset(viewsets.ModelViewSet):
     ]
     serializer_class = PersonnelSerializer
 
-#Income Viewset
+
+# Income Viewset
 class IncomeViewset(viewsets.ModelViewSet):
     queryset = Income.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = IncomeSerializer
-    
-#Expenditure Viewset
+
+
+# Expenditure Viewset
 class ExpenditureViewset(viewsets.ModelViewSet):
     queryset = Expenditure.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = ExpenditureSerializer
-    
-#Consumable Viewset
+
+
+# Consumable Viewset
 class ConsumableViewset(viewsets.ModelViewSet):
     queryset = Consumable.objects.all()
     permissions_classes = [
@@ -42,7 +47,17 @@ class ConsumableViewset(viewsets.ModelViewSet):
     ]
     serializer_class = ConsumableSerializer
 
-#Harvest Viewset
+
+# NewConsumable
+class NewConsumableViewset(viewsets.ModelViewSet):
+    queryset = NewConsumable.objects.all()
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = NewConsumableSerializer
+
+
+# Harvest Viewset
 class HarvestViewset(viewsets.ModelViewSet):
     queryset = Harvest.objects.all()
     permissions_classes = [
@@ -50,34 +65,47 @@ class HarvestViewset(viewsets.ModelViewSet):
     ]
     serializer_class = HarvestSerializer
 
-#AdvanceForm Viewset
+
+# AdvanceForm Viewset
 class AdvanceFormViewset(viewsets.ModelViewSet):
     queryset = AdvanceForm.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = AdvanceFormSerializer
-    
-#Payroll Viewset
+
+
+# Payroll Viewset
 class PayrollViewset(viewsets.ModelViewSet):
     queryset = Payroll.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = PayrollSerializer
-    
-#Requisition Viewset
+
+
+# Requisition Viewset
 class RequisitionViewset(viewsets.ModelViewSet):
     queryset = Requisition.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = RequisitionSerializer
-    
-#ToolBinCard Viewset
+
+
+# ToolBinCard Viewset
 class ToolBinCardViewset(viewsets.ModelViewSet):
     queryset = ToolBinCard.objects.all()
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = ToolBinCardSerializer
+
+
+# Tool Viewset
+class ToolViewset(viewsets.ModelViewSet):
+    queryset = Tool.objects.all()
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = ToolSerializer

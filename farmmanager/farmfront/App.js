@@ -42,9 +42,9 @@ import LandReportInventory from "./src/components/LandReportInventory";
 // import Harvest from "./src/components/Harvest";
 // import HarvestLand from "./src/components/HarvestLand";
 // import HarvestDetails from "./src/components/HarvestDetails";
-// import Tools from "./src/components/Tools";
-// import ToolsLand from "./src/components/ToolsLand";
-// import ToolsDetails from "./src/components/ToolsDetails";
+// import Tool from "./src/components/Tool";
+// import ToolLand from "./src/components/ToolLand";
+// import ToolDetails from "./src/components/ToolDetails";
 // import ToolBinCard from "./src/components/ToolBinCard";
 
 import BottomNav from "./src/components/BottomNav";
@@ -66,7 +66,10 @@ export default class App extends Component {
             <Stack.Screen name="Sales Summaries" component={IncomeLand} />
             <Stack.Screen name="Sales Details" component={IncomeDetails} />
             <Stack.Screen name="Expenditure Form" component={ExpenditureForm} />
-            <Stack.Screen name="Expenditure Summaries" component={ExpenditureLand} />
+            <Stack.Screen
+              name="Expenditure Summaries"
+              component={ExpenditureLand}
+            />
             <Stack.Screen
               name="Expenditure Details"
               component={ExpenditureDetails}
@@ -78,7 +81,7 @@ export default class App extends Component {
             <Stack.Screen name="Advance Summaries" component={AdvanceLand} />
             <Stack.Screen name="Advance Details" component={AdvanceDetails} />
             <Stack.Screen name="Requisition Form" component={RequisitionForm} />
-            <Stack.Screen name="Requisition Summaries" component={RequisitionLand} />
+            <Stack.Screen name="Order Summaries" component={RequisitionLand} />
             <Stack.Screen
               name="Requisition Details"
               component={RequisitionDetails}
@@ -93,7 +96,7 @@ export default class App extends Component {
             {/* <Stack.Screen name="Harvest Form" component={Harvest} /> */}
             {/* <Stack.Screen name="Harvest Summaries" component={HarvestLand} /> */}
             {/* <Stack.Screen name="Harvest Details" component={HarvestDetails} /> */}
-            {/* <Stack.Screen name="Tools Form" component={Tools} /> */}
+            {/* <Stack.Screen name="Tool Form" component={Tool} /> */}
             {/* <Stack.Screen name="Tools Summaries" component={ToolsLand} /> */}
             {/* <Stack.Screen name="Tools Details" component={ToolsDetails} /> */}
             {/* <Stack.Screen name="ToolBinCard" component={ToolBinCard} /> */}

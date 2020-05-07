@@ -5,10 +5,10 @@ import {
   StyleSheet,
   Text,
   Button,
-  Image,
+  // Image
   SafeAreaView
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+// import * as ImagePicker from "expo-image-picker";
 var t = require("tcomb-form-native");
 const Form = t.form.Form;
 
@@ -41,7 +41,7 @@ const StoreName = t.refinement(t.String, StoreName => {
 });
 
 /** create the structure of the form. Image field is treated separately. */
-const User = t.struct({
+const ToolBinCard = t.struct({
   ToolName: ToolName, //string
   Description: t.String, //string
   DateTakenIn: t.Date, //date picker
@@ -172,13 +172,13 @@ export default class ToolBinCard extends Component {
   // };
 
   render() {
-    let { image } = this.state;
+    // let { image } = this.state;
     return (
       <SafeAreaView style={styles.container} behavior="padding" enabled>
         <ScrollView>
           <View>
             <Text style={styles.title}>Tool Bin Card</Text>
-            <Form ref={c => (this._form = c)} type={User} options={options} />
+            <Form ref={c => (this._form = c)} type={ToolBinCard} options={options} />
             {/* <Button title="Select Image." onPress={this._pickImage} />
             {image && (
               <Image
@@ -213,12 +213,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 25
   },
-  question: {
-    color: "#650205",
-    textAlign: "center",
-    marginTop: 18,
-    fontSize: 18
-  },
+  // question: {
+  //   color: "#650205",
+  //   textAlign: "center",
+  //   marginTop: 18,
+  //   fontSize: 18
+  // },
 
   button: {
     marginTop: 20,

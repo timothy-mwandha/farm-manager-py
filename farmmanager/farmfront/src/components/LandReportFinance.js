@@ -43,20 +43,19 @@ export default function LandReportFinace({ navigation }) {
             style={{
               flex: 1,
               backgroundColor: "#ecef57",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
-              alignItems: "center",
-              fontSize: 30
+              alignItems: "center"
             }}
           >
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
               source={require("../images/sales.png")}
             />
@@ -67,7 +66,7 @@ export default function LandReportFinace({ navigation }) {
             style={{
               flex: 1,
               backgroundColor: "#abdd53",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -77,9 +76,9 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
               source={require("../images/expense_icon.png")}
             />
@@ -94,7 +93,7 @@ export default function LandReportFinace({ navigation }) {
             style={{
               flex: 1,
               backgroundColor: "#349e00",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -104,9 +103,9 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
               source={require("../images/purchase_order_icon.jpg")}
             />
@@ -117,7 +116,7 @@ export default function LandReportFinace({ navigation }) {
             style={{
               flex: 1,
               backgroundColor: "#7cb407",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -127,9 +126,9 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
               source={require("../images/payroll_icon.jpg")}
             />
@@ -146,9 +145,8 @@ export default function LandReportFinace({ navigation }) {
             onPress={() => navigation.navigate("Advance Summaries")}
             style={{
               flex: 1,
-              // backgroundColor: "#606734",
               backgroundColor: "#abdd53",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -158,21 +156,20 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
-              source={require("../images/customers_icon_3.png")}
+              source={require("../images/advance-icon.png")}
             />
-            <Text>CUSTOMERS</Text>
+            <Text>ADVANCE</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("Advance Summaries")}
             style={{
               flex: 1,
-              // backgroundColor: "#606734",
-              backgroundColor: "#abdd53",
-              borderRadius: 20,
+              backgroundColor: "#7cb407",
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -182,18 +179,18 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
-              source={require("../images/supplier.png")}
+              source={require("../images/customers_icon_3.png")}
             />
-            <Text>SUPPLIERS</Text>
+            <Text>CUSTOMERS</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <View
           // onPress={() => navigation.navigate("AdvanceLand")}
           style={{ flex: 1, flexDirection: "row" }}
@@ -202,9 +199,8 @@ export default function LandReportFinace({ navigation }) {
             onPress={() => navigation.navigate("Advance Summaries")}
             style={{
               flex: 1,
-              // backgroundColor: "#606734",
               backgroundColor: "#abdd53",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
               fontSize: 24,
               justifyContent: "center",
@@ -214,28 +210,29 @@ export default function LandReportFinace({ navigation }) {
             <Image
               style={{
                 alignSelf: "center",
-                width: 80,
-                height: 80,
-                marginRight: 5
+                width: 60,
+                height: 60,
+                margin: 5
               }}
-              source={require("../images/advance-icon.png")}
+              source={require("../images/supplier.png")}
             />
-            <Text>ADVANCE</Text>
-          </TouchableOpacity> */}
-      {/* <TouchableOpacity
+            <Text>SUPPLIERS</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               flex: 1,
               backgroundColor: "#163700",
-              borderRadius: 20,
+              borderRadius: 15,
               margin: 10,
+              fontSize: 24,
               justifyContent: "center",
               alignItems: "center"
             }}
           >
             <Text>OTHER</Text>
-          </TouchableOpacity> */}
-      {/* </View> */}
-      {/* </View> */}
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }

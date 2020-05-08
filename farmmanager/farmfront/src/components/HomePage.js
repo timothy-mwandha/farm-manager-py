@@ -39,7 +39,7 @@ export default function HomePage({ navigation }) {
             onPress={() => navigation.navigate("Finance")}
             style={{
               flex: 1,
-              backgroundColor: "#7cb407",
+              backgroundColor: "#349e00",
               borderRadius: 20,
               margin: 10,
               fontSize: 24,
@@ -86,7 +86,7 @@ export default function HomePage({ navigation }) {
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Finance")}
+            onPress={() => navigation.navigate("Workers")}
             style={{
               flex: 1,
               backgroundColor: "#7cb407",
@@ -108,11 +108,11 @@ export default function HomePage({ navigation }) {
             />
             <Text>WORKERS</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("HarvestLand")}
+          {/* <TouchableOpacity
+            onPress={() => navigation.navigate("Finance")}
             style={{
               flex: 1,
-              backgroundColor: "#7cb407",
+              backgroundColor: "#349e00",
               borderRadius: 20,
               margin: 10,
               fontSize: 24,
@@ -130,7 +130,7 @@ export default function HomePage({ navigation }) {
               source={require("../images/coffee-harvest.jpg")}
             />
             <Text>HARVEST</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
       {/* <View style={{ flex: 1 }}>

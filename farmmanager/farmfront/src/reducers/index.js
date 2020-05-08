@@ -11,6 +11,8 @@ import consumableReducer from "./consumableReducer";
 import harvestReducer from "./harvestReducer";
 import toolbincardReducer from "./toolbincardReducer";
 import personnelReducer from "./personnelReducer";
+import customerReducer from "./customerReducer";
+import supplierReducer from "./supplierReducer";
 
 export default combineReducers({
   users: userReducer,
@@ -24,27 +26,8 @@ export default combineReducers({
   consumables: consumableReducer,
   newconsumables: newConsumableReducer,
   harvests: harvestReducer,
-  persons: personnelReducer
+  persons: personnelReducer,
+  customers: customerReducer,
+  suppliers: supplierReducer
 });
 
-{
-  /* <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-          <TouchableOpacity
-            // onPress={() => navigation.navigate("")}
-            style={{
-              flex: 1,
-              backgroundColor: "#606734",
-              borderRadius: 5,
-              margin: 10,
-              fontSize: 24,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Text>UPDATES</Text>
-          </TouchableOpacity>
-                <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-           */
-}

@@ -39,13 +39,22 @@ import LandReportInventory from "./src/components/LandReportInventory";
 // import Consumable from "./src/components/Consumable";
 // import ConsumableLand from "./src/components/ConsumableLand";
 // import ConsumableDetails from "./src/components/ConsumableDetails";
-// import Harvest from "./src/components/Harvest";
-// import HarvestLand from "./src/components/HarvestLand";
-// import HarvestDetails from "./src/components/HarvestDetails";
+// import NewConsumable from "./src/components/NewConsumable";
+// import NewConsumableLand from "./src/components/NewConsumableLand";
+// import NewConsumableDetails from "./src/components/NewConsumableDetails";
 // import Tool from "./src/components/Tool";
 // import ToolLand from "./src/components/ToolLand";
 // import ToolDetails from "./src/components/ToolDetails";
 // import ToolBinCard from "./src/components/ToolBinCard";
+// import ToolBinCardLand from "./src/components/ToolBinCardLand";
+// import ToolBinCardDetails from "./src/components/ToolBinCardDetails";
+import LandReportWorkers from "./src/components/LandReportWorkers";
+
+import LandReportHarvest from "./src/components/LandReportHarvest";
+// import Harvest from "./src/components/Harvest";
+// import HarvestLand from "./src/components/HarvestLand";
+// import HarvestDetails from "./src/components/HarvestDetails";
+
 
 import BottomNav from "./src/components/BottomNav";
 
@@ -100,6 +109,8 @@ export default class App extends Component {
             {/* <Stack.Screen name="Tools Summaries" component={ToolsLand} /> */}
             {/* <Stack.Screen name="Tools Details" component={ToolsDetails} /> */}
             {/* <Stack.Screen name="ToolBinCard" component={ToolBinCard} /> */}
+            <Stack.Screen name="Workers" component={LandReportWorkers} />
+            {/* <Stack.Screen name="Harvests" component={LandReportHarvests} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
